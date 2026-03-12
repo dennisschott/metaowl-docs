@@ -1,0 +1,23 @@
+<templates>
+  <t t-name="DocLayout">
+    <div class="doc-layout">
+      <!-- Header -->
+      <AppHeader/>
+
+      <!-- Sidebar -->
+      <AppSidebar links="links"/>
+
+      <!-- Main Content -->
+      <main class="ml-64 mt-14 flex-1 min-h-screen">
+        <div class="max-w-4xl mx-auto px-8 py-8">
+          <t t-slot="default"/>
+        </div>
+      </main>
+
+      <!-- Footer -->
+      <div class="ml-64">
+        <AppFooter/>
+      </div>
+    </div>
+  </t>
+</templates>

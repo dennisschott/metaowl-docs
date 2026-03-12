@@ -1,0 +1,128 @@
+# MetaOwl LLM Context
+
+## Framework Identity
+MetaOwl is a lightweight meta-framework for Odoo OWL (Odoo Web Library) applications, built on Vite. It provides file-based routing, state management, and app mounting.
+
+## Core Concepts
+
+### OWL (Odoo Web Library)
+- Reactive component framework
+- XML-based templates (not JSX)
+- Class-based components with static properties
+- Lifecycle: setup(), willStart(), mounted(), etc.
+
+### File-Based Routing
+Convention: 
+- pages/index/Index.js → /
+- pages/about/About.js → /about  
+- pages/user/[id]/User.js → /user/:id
+- pages/[...404]/NotFound.js → catch-all
+
+### Project Structure
+metaowl-docs/
+├── src/
+│   ├── metaowl.js          # App entry
+│   ├── index.html          # HTML shell
+│   ├── css.js              # Global styles
+│   ├── pages/              # Route components
+│   │   └── index/
+│   │       ├── Index.js
+│   │       ├── Index.xml
+│   │       └── index.css
+│   ├── components/         # Shared components
+│   │   ├── AppHeader/
+│   │   └── AppFooter/
+│   └── layouts/            # Page layouts (optional)
+├── vite.config.js
+└── package.json
+
+## API Reference
+
+### boot(routes)
+Mounts app to #metaowl element.
+```javascript
+import { boot } from 'metaowl'
+boot() // auto file-based routing
+```
+
+### Fetch
+HTTP client with base URL.
+```javascript
+Fetch.configure({ baseUrl: '/api' })
+await Fetch.url('/users', 'GET')
+await Fetch.url('/users', 'POST', data)
+```
+
+### Cache
+localStorage wrapper.
+```javascript
+await Cache.set('key', value)
+const value = await Cache.get('key')
+```
+
+### Store
+State management.
+```javascript
+const useStore = Store.define('store', {
+  state: () => ({ count: 0 }),
+  getters: { double: (s) => s.count * 2 },
+  mutations: { inc: (s) => s.count++ },
+  actions: { async fetch({ commit }) {} }
+})
+```
+
+### Meta
+Document head management.
+```javascript
+Meta.title('Title')
+Meta.description('Desc')
+Meta.ogTitle('Social Title')
+```
+
+### router
+Navigation guards and helpers.
+```javascript
+router.beforeEach((to, from, next) => next())
+router.push('/path')
+router.back()
+```
+
+## Component Template
+```javascript
+import { Component } from '@odoo/owl'
+import { Meta } from 'metaowl'
+
+export default class ComponentName extends Component {
+  static template = 'ComponentName'
+  static components = { /* child components */ }
+  
+  setup() {
+    // Initialize
+    Meta.title('Page')
+  }
+}
+```
+
+## Template Format (XML)
+```xml
+<templates>
+  <t t-name="ComponentName">
+    <div class="component">
+      <ChildComponent />
+      <span t-esc="someValue" />
+    </div>
+  </t>
+</templates>
+```
+
+## CLI Commands
+- metaowl-create - Scaffold project
+- metaowl-dev - Dev server
+- metaowl-build - Production build  
+- metaowl-generate - SSG
+- metaowl-lint - Linting
+
+## See Also
+- README.md - Full documentation
+- https://github.com/odoo/owl - OWL framework
+- https://vitejs.dev - Vite documentation

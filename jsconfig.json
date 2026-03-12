@@ -1,0 +1,17 @@
+{
+  "extends": "./node_modules/metaowl/config/jsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@pages/*": [
+        "src/pages/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ]
+    }
+  },
+  "include": [
+    "src"
+  ]
+}

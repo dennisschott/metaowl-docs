@@ -1,0 +1,41 @@
+<templates>
+  <t t-name="Fetch">
+    <div style="max-width: 896px; margin: 0 auto; padding: 32px;">
+      <article style="max-width: 65ch;">
+        <h1 style="font-size: 2.25rem; font-weight: 700; color: #eee; margin-bottom: 16px;">Fetch API</h1>
+        <p style="font-size: 1.125rem; color: #9ca3af; margin-bottom: 32px;">
+          MetaOWL provides a Fetch wrapper with caching and error handling.
+        </p>
+
+        <h2 id="configuration" style="font-size: 1.5rem; font-weight: 600; color: #eee; margin-top: 32px; margin-bottom: 16px;">Configuration</h2>
+        <pre class="language-javascript" style="background: #1f2937; color: #f9fafb; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { Fetch } from 'metaowl'
+
+Fetch.configure({
+  baseUrl: 'https://api.example.com',
+  headers: {
+    'Authorization': 'Bearer token'
+  }
+})</code></pre>
+
+        <h2 id="basic-usage" style="font-size: 1.5rem; font-weight: 600; color: #eee; margin-top: 32px; margin-bottom: 16px;">Basic Usage</h2>
+        <pre class="language-javascript" style="background: #1f2937; color: #f9fafb; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">// GET request
+const users = await Fetch.get('/users')
+
+// POST request
+const newUser = await Fetch.post('/users', { name: 'John' })
+
+// PUT request
+await Fetch.put('/users/1', { name: 'Jane' })
+
+// DELETE request
+await Fetch.delete('/users/1')</code></pre>
+
+        <h2 id="caching" style="font-size: 1.5rem; font-weight: 600; color: #eee; margin-top: 32px; margin-bottom: 16px;">Caching</h2>
+        <p style="color: #9ca3af; margin-bottom: 16px;">Enable caching for GET requests:</p>
+        <pre class="language-javascript" style="background: #1f2937; color: #f9fafb; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">const users = await Fetch.get('/users', {
+  cache: { enabled: true, ttl: 60000 }
+})</code></pre>
+      </article>
+    </div>
+  </t>
+</templates>

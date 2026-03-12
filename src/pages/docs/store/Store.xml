@@ -1,0 +1,57 @@
+<templates>
+  <t t-name="Store">
+    <div style="max-width: 896px; margin: 0 auto; padding: 32px;">
+      <article style="max-width: 65ch;">
+        <h1 style="font-size: 2.25rem; font-weight: 700; color: #eee; margin-bottom: 16px;">Store (State Management)</h1>
+        <p style="font-size: 1.125rem; color: #9ca3af; margin-bottom: 32px;">
+          MetaOWL provides a built-in store for managing application state.
+        </p>
+
+        <h2 id="creating-store" style="font-size: 1.5rem; font-weight: 600; color: #eee; margin-top: 32px; margin-bottom: 16px;">Creating a Store</h2>
+        <pre class="language-javascript" style="background: #1f2937; color: #f9fafb; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { createStore } from 'metaowl'
+
+const store = createStore({
+  state: {
+    count: 0,
+    user: null
+  },
+  mutations: {
+    increment(state) {
+      state.count++
+    },
+    setUser(state, user) {
+      state.user = user
+    }
+  },
+  actions: {
+    async fetchUser({ commit }) {
+      const user = await fetch('/api/user').then(r => r.json())
+      commit('setUser', user)
+    }
+  }
+})</code></pre>
+
+        <h2 id="using-store" style="font-size: 1.5rem; font-weight: 600; color: #eee; margin-top: 32px; margin-bottom: 16px;">Using the Store</h2>
+        <pre class="language-javascript" style="background: #1f2937; color: #f9fafb; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">// Access state
+store.state.count
+
+// Commit mutations
+store.commit('increment')
+
+// Dispatch actions
+store.dispatch('fetchUser')</code></pre>
+
+        <h2 id="persistence" style="font-size: 1.5rem; font-weight: 600; color: #eee; margin-top: 32px; margin-bottom: 16px;">Persistence</h2>
+        <p style="color: #9ca3af; margin-bottom: 16px;">Persist state to localStorage:</p>
+        <pre class="language-javascript" style="background: #1f2937; color: #f9fafb; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { createStore, createPersistencePlugin } from 'metaowl'
+
+const store = createStore({
+  state: { theme: 'light' },
+  plugins: [
+    createPersistencePlugin({ key: 'app-state' })
+  ]
+})</code></pre>
+      </article>
+    </div>
+  </t>
+</templates>

@@ -1,0 +1,13 @@
+<templates>
+  <t t-name="AppFooter">
+    <footer class="border-t border-gray-700 bg-gray-800 py-6">
+      <div class="flex justify-between items-center text-sm text-gray-400">
+        <span class="flex items-center gap-1">
+          <span>🦉</span>
+          <span>Built with MetaOWL</span>
+        </span>
+        <span>v0.2.7</span>
+      </div>
+    </footer>
+  </t>
+</templates>

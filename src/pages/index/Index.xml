@@ -1,0 +1,46 @@
+<templates>
+  <t t-name="Index">
+    <!-- Hero Section -->
+    <div style="text-align: center; padding: 64px 0;">
+      <h1 style="font-size: 3rem; font-weight: 700; color: #eee; margin-bottom: 24px;">
+        Build Modern Web Apps with <span style="color: #60a5fa;">MetaOWL</span>
+      </h1>
+      <p style="font-size: 1.25rem; color: #9ca3af; margin-bottom: 32px; max-width: 42rem; margin-left: auto; margin-right: auto;">
+        MetaOWL is a meta-framework for Odoo OWL on Vite. Build powerful, reactive web applications with file-based routing, state management, and SEO optimization.
+      </p>
+      <div style="display: flex; justify-content: center; gap: 16px;">
+        <a href="/docs/getting-started" style="padding: 12px 24px; background: #2563eb; color: white; border-radius: 8px; font-weight: 500; text-decoration: none;">
+          Get Started
+        </a>
+        <a href="https://www.npmjs.com/package/metaowl" target="_blank" style="padding: 12px 24px; background: #374151; color: #e5e7eb; border-radius: 8px; font-weight: 500; text-decoration: none;">
+          View on npm
+        </a>
+      </div>
+    </div>
+
+    <!-- Features Grid -->
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 64px;">
+      <div style="padding: 24px; background: #1f2937; border-radius: 12px; border: 1px solid #374151; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
+        <div style="width: 48px; height: 48px; background: #1e3a5f; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+          <ion-icon name="flash" style="font-size: 24px; color: #60a5fa;"></ion-icon>
+        </div>
+        <h3 style="font-size: 1.125rem; font-weight: 600; color: #eee; margin-bottom: 8px;">Lightning Fast</h3>
+        <p style="color: #9ca3af;">Built on Vite for instant hot module replacement.</p>
+      </div>
+      <div style="padding: 24px; background: #1f2937; border-radius: 12px; border: 1px solid #374151; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
+        <div style="width: 48px; height: 48px; background: #14532d; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+          <ion-icon name="folder-open" style="font-size: 24px; color: #4ade80;"></ion-icon>
+        </div>
+        <h3 style="font-size: 1.125rem; font-weight: 600; color: #eee; margin-bottom: 8px;">File-Based Routing</h3>
+        <p style="color: #9ca3af;">Simple directory structure for routes.</p>
+      </div>
+      <div style="padding: 24px; background: #1f2937; border-radius: 12px; border: 1px solid #374151; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
+        <div style="width: 48px; height: 48px; background: #2e1065; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+          <ion-icon name="analytics" style="font-size: 24px; color: #a855f7;"></ion-icon>
+        </div>
+        <h3 style="font-size: 1.125rem; font-weight: 600; color: #eee; margin-bottom: 8px;">State Management</h3>
+        <p style="color: #9ca3af;">Built-in store with mutations and actions.</p>
+      </div>
+    </div>
+  </t>
+</templates>

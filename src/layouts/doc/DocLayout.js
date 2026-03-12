@@ -20,8 +20,8 @@ export default class DocLayout extends Component {
       {
         href: 'https://github.com/odoo/owl',
         label: 'OWL Framework',
-        external: true
-      }
+        external: true,
+      },
     ]
 
     // Get current path for active state

@@ -1,10 +1,9 @@
 import { Component } from '@odoo/owl'
 import { AppHeader } from '@components/AppHeader/AppHeader'
-import { AppFooter } from '@components/AppFooter/AppFooter'
 
 export default class DocLayout extends Component {
   static template = 'DocLayout'
-  static components = { AppHeader, AppFooter }
+  static components = { AppHeader }
 
   setup() {
     this.links = [
@@ -21,8 +20,8 @@ export default class DocLayout extends Component {
       {
         href: 'https://github.com/odoo/owl',
         label: 'OWL Framework',
-        external: true,
-      },
+        external: true
+      }
     ]
 
     // Get current path for active state

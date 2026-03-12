@@ -10,7 +10,7 @@
           <a href="https://www.npmjs.com/package/metaowl" target="_blank" class="flex items-center gap-1 text-sm text-gray-400 hover:text-gray-100">
             <ion-icon name="logo-npm" class="text-xl"></ion-icon>
           </a>
-          <a href="https://github.com" target="_blank" class="flex items-center gap-1 text-sm text-gray-400 hover:text-gray-100">
+          <a href="https://github.com/dennisschott/metaowl" target="_blank" class="flex items-center gap-1 text-sm text-gray-400 hover:text-gray-100">
             <ion-icon name="logo-github" class="text-xl"></ion-icon>
           </a>
         </div>

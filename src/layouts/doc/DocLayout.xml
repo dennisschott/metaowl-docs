@@ -1,40 +1,50 @@
 <templates>
   <t t-name="DocLayout">
-    <div class="doc-layout">
+    <div class="doc-layout flex flex-col min-h-screen">
       <!-- Header -->
       <AppHeader/>
 
-      <!-- Sidebar -->
-      <aside class="fixed left-0 top-14 bottom-0 w-64 bg-gray-800 border-r border-gray-700 overflow-y-auto">
-        <nav class="p-4">
-          <ul class="space-y-1">
-            <li t-foreach="links" t-as="link" t-key="link.href">
-              <a 
-                t-att-href="link.href"
-                t-att-target="link.external ? '_blank' : undefined"
-                class="block px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center justify-between"
-                t-att-class="window.location.pathname === link.href ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700'"
-              >
-                <span t-esc="link.label"/>
-                <t t-if="link.external">
-                  <ion-icon name="open-outline" class="text-sm"></ion-icon>
-                </t>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </aside>
+      <div class="flex flex-1">
+        <!-- Sidebar -->
+        <aside class="fixed left-0 top-14 bottom-0 w-64 bg-gray-800 border-r border-gray-700 overflow-y-auto">
+          <nav class="p-4">
+            <ul class="space-y-1">
+              <li t-foreach="links" t-as="link" t-key="link.href">
+                <a 
+                  t-att-href="link.href"
+                  t-att-target="link.external ? '_blank' : undefined"
+                  class="block px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center justify-between"
+                  t-att-class="window.location.pathname === link.href ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700'"
+                >
+                  <span t-esc="link.label"/>
+                  <t t-if="link.external">
+                    <ion-icon name="open-outline" class="text-sm"></ion-icon>
+                  </t>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </aside>
 
-      <!-- Main Content -->
-      <main class="ml-64 mt-14 flex-1 min-h-screen">
-        <div class="max-w-4xl mx-auto px-8 py-8">
-          <t t-slot="default"/>
-        </div>
-      </main>
+        <!-- Main Content -->
+        <main class="ml-64 flex-1 mt-14 min-h-screen">
+          <div class="max-w-4xl mx-auto px-8 py-8">
+            <t t-slot="default"/>
+          </div>
+        </main>
+      </div>
 
       <!-- Footer -->
       <div class="ml-64">
-        <AppFooter/>
+        <footer class="border-t border-gray-700 bg-gray-800 py-6">
+          <div class="max-w-4xl mx-auto px-8 flex justify-between items-center text-sm text-gray-400">
+            <span class="flex items-center gap-1">
+              <span>🦉</span>
+              <span>Built with MetaOWL</span>
+            </span>
+            <span>v0.2.12</span>
+          </div>
+        </footer>
       </div>
     </div>
   </t>

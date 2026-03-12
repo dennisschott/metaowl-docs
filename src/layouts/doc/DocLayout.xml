@@ -14,7 +14,7 @@
                   t-att-href="link.href"
                   t-att-target="link.external ? '_blank' : undefined"
                   class="block px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center justify-between"
-                  t-att-class="window.location.pathname === link.href ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700'"
+                  t-att-class="isActive(link.href) ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700'"
                 >
                   <span t-esc="link.label"/>
                   <t t-if="link.external">

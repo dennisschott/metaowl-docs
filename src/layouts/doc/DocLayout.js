@@ -24,9 +24,10 @@ export default class DocLayout extends Component {
       },
     ]
 
-    // Get current path for active state
-    this.getCurrentPath = () => {
-      return window.location.pathname
+    this.isActive = (href) => {
+      const current = window.location.pathname.replace(/\/$/, '')
+      const target = href.replace(/\/$/, '')
+      return current === target
     }
   }
 }

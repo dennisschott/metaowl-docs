@@ -1,11 +1,10 @@
 import { Component } from '@odoo/owl'
 import { AppHeader } from '@components/AppHeader/AppHeader'
-import { AppSidebar } from '@components/AppSidebar/AppSidebar'
 import { AppFooter } from '@components/AppFooter/AppFooter'
 
 export default class DocLayout extends Component {
   static template = 'DocLayout'
-  static components = { AppHeader, AppSidebar, AppFooter }
+  static components = { AppHeader, AppFooter }
 
   setup() {
     this.links = [

@@ -5,7 +5,25 @@
       <AppHeader/>
 
       <!-- Sidebar -->
-      <AppSidebar links="links"/>
+      <aside class="fixed left-0 top-14 bottom-0 w-64 bg-gray-800 border-r border-gray-700 overflow-y-auto">
+        <nav class="p-4">
+          <ul class="space-y-1">
+            <li t-foreach="links" t-as="link" t-key="link.href">
+              <a 
+                t-att-href="link.href"
+                t-att-target="link.external ? '_blank' : undefined"
+                class="block px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center justify-between"
+                t-att-class="window.location.pathname === link.href ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700'"
+              >
+                <span t-esc="link.label"/>
+                <t t-if="link.external">
+                  <ion-icon name="open-outline" class="text-sm"></ion-icon>
+                </t>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
 
       <!-- Main Content -->
       <main class="ml-64 mt-14 flex-1 min-h-screen">

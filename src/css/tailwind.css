@@ -1,7 +1,4 @@
 @import 'tailwindcss';
-@source "../**/*.js";
-@source "../**/*.xml";
-@source "../**/*.html";
 
 @layer base {
   html {

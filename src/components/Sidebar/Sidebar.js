@@ -1,14 +1,10 @@
-import { Component, useState } from '@odoo/owl'
-import { AppHeader } from '@components/AppHeader/AppHeader'
-import { AppFooter } from '@components/AppFooter/AppFooter'
+import { Component } from '@odoo/owl'
 
-export default class DocLayout extends Component {
-  static template = 'DocLayout'
-  static components = { AppHeader, AppFooter }
+export const Sidebar = class Sidebar extends Component {
+  static template = 'Sidebar'
+  static props = ['isOpen', 'onClose']
 
   setup() {
-    this.state = useState({ isSidebarOpen: false })
-
     this.links = [
       { href: '/', label: 'Home' },
       { href: '/docs/getting-started', label: 'Getting Started' },
@@ -32,13 +28,5 @@ export default class DocLayout extends Component {
       const target = href.replace(/\/$/, '')
       return current === target
     }
-  }
-
-  toggleSidebar() {
-    this.state.isSidebarOpen = !this.state.isSidebarOpen
-  }
-
-  closeSidebar() {
-    this.state.isSidebarOpen = false
   }
 }

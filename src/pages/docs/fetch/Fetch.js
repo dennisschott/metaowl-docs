@@ -3,7 +3,6 @@ import { Meta } from 'metaowl'
 
 export default class Fetch extends Component {
   static template = 'Fetch'
-  static layout = 'doc'
   static components = {}
 
   setup() {

@@ -3,7 +3,6 @@ import { Meta } from 'metaowl'
 
 export default class ProjectStructure extends Component {
   static template = 'ProjectStructure'
-  static layout = 'doc'
   static components = {}
 
   setup() {

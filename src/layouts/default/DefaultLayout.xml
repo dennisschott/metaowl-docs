@@ -1,0 +1,41 @@
+<templates>
+  <t t-name="DefaultLayout">
+    <div class="doc-layout flex flex-col min-h-screen">
+      <!-- Header -->
+      <AppHeader>
+        <t t-set-slot="menu-toggle">
+          <button
+            t-on-click="toggleSidebar"
+            class="md:hidden mr-2 p-1.5 rounded-md text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center justify-center cursor-pointer"
+          >
+            <ion-icon t-att-name="state.isSidebarOpen ? 'close-outline' : 'menu-outline'" class="text-xl"/>
+          </button>
+        </t>
+      </AppHeader>
+
+      <!-- Mobile overlay -->
+      <div
+        class="fixed inset-0 bg-black/50 z-30 md:hidden cursor-pointer transition-opacity duration-300"
+        t-att-class="state.isSidebarOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'"
+        t-on-click="toggleSidebar"
+      />
+
+      <div class="flex flex-1">
+        <!-- Sidebar -->
+        <Sidebar t-props="{ isOpen: state.isSidebarOpen, onClose: closeSidebar }" />
+
+        <!-- Main Content -->
+        <main class="flex-1 min-w-0 mt-14 min-h-screen md:ml-64">
+          <div class="max-w-4xl mx-auto px-4 md:px-8 py-8">
+            <t t-slot="default"/>
+          </div>
+        </main>
+      </div>
+
+      <!-- Footer -->
+      <div class="md:ml-64">
+        <AppFooter />
+      </div>
+    </div>
+  </t>
+</templates>

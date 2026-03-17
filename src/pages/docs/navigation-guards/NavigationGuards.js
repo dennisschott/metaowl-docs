@@ -3,7 +3,6 @@ import { Meta } from 'metaowl'
 
 export default class NavigationGuards extends Component {
   static template = 'NavigationGuards'
-  static layout = 'doc'
   static components = {}
 
   setup() {

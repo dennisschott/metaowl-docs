@@ -3,7 +3,6 @@ import { Meta } from 'metaowl'
 
 export default class ApiReference extends Component {
   static template = 'ApiReference'
-  static layout = 'doc'
   static components = {}
 
   setup() {

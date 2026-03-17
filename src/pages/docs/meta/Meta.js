@@ -3,7 +3,6 @@ import { Meta } from 'metaowl'
 
 export default class MetaDocs extends Component {
   static template = 'Meta'
-  static layout = 'doc'
   static components = {}
 
   setup() {

@@ -3,7 +3,6 @@ import { Meta } from 'metaowl'
 
 export default class Index extends Component {
   static template = 'Index'
-  static layout = 'doc'
   static components = {}
 
   setup() {
@@ -11,7 +10,5 @@ export default class Index extends Component {
     Meta.description(
       'MetaOWL is a modern meta-framework for Odoo OWL on Vite. Discover the documentation and learn how to build powerful web applications with OWL.',
     )
-    Meta.ogTitle('MetaOWL - The Meta-Framework for Odoo OWL')
-    Meta.canonical('https://metaowl.org')
   }
 }

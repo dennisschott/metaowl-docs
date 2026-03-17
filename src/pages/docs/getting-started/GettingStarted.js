@@ -3,7 +3,6 @@ import { Meta } from 'metaowl'
 
 export default class GettingStarted extends Component {
   static template = 'GettingStarted'
-  static layout = 'doc'
   static components = {}
 
   setup() {

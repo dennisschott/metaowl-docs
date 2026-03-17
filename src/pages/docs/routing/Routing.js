@@ -3,7 +3,6 @@ import { Meta } from 'metaowl'
 
 export default class Routing extends Component {
   static template = 'Routing'
-  static layout = 'doc'
   static components = {}
 
   setup() {

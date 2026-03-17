@@ -4,10 +4,9 @@
       <div
         class="max-w-4xl mx-auto px-4 md:px-8 flex justify-between items-center text-sm text-gray-500 dark:text-gray-400">
         <span class="flex items-center gap-1">
-          <span>🦉</span>
           <span>Built with MetaOWL</span>
         </span>
-        <span>v0.3.3</span>
+        <span>v0.3.4</span>
       </div>
     </footer>
   </t>

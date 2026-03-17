@@ -14,7 +14,9 @@ export const AppHeader = class AppHeader extends Component {
     localStorage.setItem('theme', isDark ? 'dark' : 'light')
     this.state.isDark = isDark
 
-    const favicon = document.querySelector('link[rel="icon"][type="image/svg+xml"]')
+    const favicon = document.querySelector(
+      'link[rel="icon"][type="image/svg+xml"]',
+    )
     if (favicon) {
       favicon.href = isDark ? '/images/logo-darkmode.svg' : '/images/logo.svg'
     }

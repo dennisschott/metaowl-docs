@@ -60,8 +60,13 @@
           document.documentElement.classList.add('dark')
         }
         document.addEventListener('DOMContentLoaded', function () {
-          var favicon = document.querySelector('link[rel="icon"][type="image/svg+xml"]')
-          if (favicon && (saved === 'light' || (saved === null && !prefersDark))) {
+          var favicon = document.querySelector(
+            'link[rel="icon"][type="image/svg+xml"]',
+          )
+          if (
+            favicon &&
+            (saved === 'light' || (saved === null && !prefersDark))
+          ) {
             favicon.href = '/images/logo.svg'
           } else if (favicon && isDark) {
             favicon.href = '/images/logo-darkmode.svg'

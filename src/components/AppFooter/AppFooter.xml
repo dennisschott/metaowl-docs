@@ -1,7 +1,8 @@
 <templates>
   <t t-name="AppFooter">
     <footer class="border-t border-gray-700 bg-gray-800 py-6">
-      <div class="flex justify-between items-center text-sm text-gray-400">
+      <div
+        class="max-w-4xl mx-auto px-4 md:px-8 flex justify-between items-center text-sm text-gray-400">
         <span class="flex items-center gap-1">
           <span>🦉</span>
           <span>Built with MetaOWL</span>

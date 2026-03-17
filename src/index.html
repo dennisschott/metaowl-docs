@@ -55,9 +55,18 @@
         var prefersDark = window.matchMedia(
           '(prefers-color-scheme: dark)',
         ).matches
-        if (saved === 'dark' || (!saved && prefersDark)) {
+        var isDark = saved === 'dark' || (!saved && prefersDark)
+        if (isDark) {
           document.documentElement.classList.add('dark')
         }
+        document.addEventListener('DOMContentLoaded', function () {
+          var favicon = document.querySelector('link[rel="icon"][type="image/svg+xml"]')
+          if (favicon && (saved === 'light' || (saved === null && !prefersDark))) {
+            favicon.href = '/images/logo.svg'
+          } else if (favicon && isDark) {
+            favicon.href = '/images/logo-darkmode.svg'
+          }
+        })
       })()
     </script>
     <script

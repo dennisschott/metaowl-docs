@@ -2,20 +2,20 @@
   <t t-name="GettingStarted">
     <div style="max-width: 896px; margin: 0 auto; padding: 32px;">
       <article style="max-width: 65ch;">
-        <h1 style="font-size: 2.25rem; font-weight: 700; color: #eee; margin-bottom: 16px;">Getting Started</h1>
-        <p style="font-size: 1.125rem; color: #9ca3af; margin-bottom: 32px;">
+        <h1 style="font-size: 2.25rem; font-weight: 700; color: var(--doc-heading-color); margin-bottom: 16px;">Getting Started</h1>
+        <p style="font-size: 1.125rem; color: var(--doc-text-color); margin-bottom: 32px;">
           Learn how to set up a MetaOWL project and start building your first application.
         </p>
 
-        <h2 id="installation" style="font-size: 1.5rem; font-weight: 600; color: #eee; margin-top: 32px; margin-bottom: 16px;">Installation</h2>
-        <p style="color: #9ca3af; margin-bottom: 16px;">Create a new MetaOWL project using the CLI:</p>
-        <pre class="language-bash" style="background: #1f2937; color: #f9fafb; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-bash">npm create metaowl@latest my-app
+        <h2 id="installation" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Installation</h2>
+        <p style="color: var(--doc-text-color); margin-bottom: 16px;">Create a new MetaOWL project using the CLI:</p>
+        <pre class="language-bash" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-bash">npm create metaowl@latest my-app
 cd my-app
 npm install</code></pre>
 
-        <h2 id="project-structure" style="font-size: 1.5rem; font-weight: 600; color: #eee; margin-top: 32px; margin-bottom: 16px;">Project Structure</h2>
-        <p style="color: #9ca3af; margin-bottom: 16px;">After creation, your project will have this structure:</p>
-        <pre class="language-bash" style="background: #1f2937; color: #f9fafb; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-bash">my-app/
+        <h2 id="project-structure" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Project Structure</h2>
+        <p style="color: var(--doc-text-color); margin-bottom: 16px;">After creation, your project will have this structure:</p>
+        <pre class="language-bash" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-bash">my-app/
 ├── src/
 │   ├── pages/
 │   ├── components/
@@ -25,15 +25,15 @@ npm install</code></pre>
 ├── package.json
 └── vite.config.js</code></pre>
 
-        <h2 id="development" style="font-size: 1.5rem; font-weight: 600; color: #eee; margin-top: 32px; margin-bottom: 16px;">Development Server</h2>
-        <p style="color: #9ca3af; margin-bottom: 16px;">Start the development server:</p>
-        <pre class="language-bash" style="background: #1f2937; color: #f9fafb; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-bash">npm run dev</code></pre>
-        <p style="color: #9ca3af; margin-bottom: 16px;">Your app will be available at <code style="background: #374151; padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">http://localhost:3000</code></p>
+        <h2 id="development" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Development Server</h2>
+        <p style="color: var(--doc-text-color); margin-bottom: 16px;">Start the development server:</p>
+        <pre class="language-bash" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-bash">npm run dev</code></pre>
+        <p style="color: var(--doc-text-color); margin-bottom: 16px;">Your app will be available at <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">http://localhost:3000</code></p>
 
-        <h2 id="build" style="font-size: 1.5rem; font-weight: 600; color: #eee; margin-top: 32px; margin-bottom: 16px;">Build for Production</h2>
-        <p style="color: #9ca3af; margin-bottom: 16px;">Build your app for production:</p>
-        <pre class="language-bash" style="background: #1f2937; color: #f9fafb; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-bash">npm run build</code></pre>
-        <p style="color: #9ca3af; margin-bottom: 16px;">The output will be in the <code style="background: #374151; padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">dist/</code> directory.</p>
+        <h2 id="build" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Build for Production</h2>
+        <p style="color: var(--doc-text-color); margin-bottom: 16px;">Build your app for production:</p>
+        <pre class="language-bash" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-bash">npm run build</code></pre>
+        <p style="color: var(--doc-text-color); margin-bottom: 16px;">The output will be in the <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">dist/</code> directory.</p>
       </article>
     </div>
   </t>

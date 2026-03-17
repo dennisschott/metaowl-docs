@@ -2,27 +2,27 @@
   <t t-name="Routing">
     <div style="max-width: 896px; margin: 0 auto; padding: 32px;">
       <article style="max-width: 65ch;">
-        <h1 style="font-size: 2.25rem; font-weight: 700; color: #eee; margin-bottom: 16px;">Routing</h1>
-        <p style="font-size: 1.125rem; color: #9ca3af; margin-bottom: 32px;">
-          MetaOWL uses file-based routing. The directory structure in <code style="background: #374151; padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">pages/</code> directly maps to URL routes.
+        <h1 style="font-size: 2.25rem; font-weight: 700; color: var(--doc-heading-color); margin-bottom: 16px;">Routing</h1>
+        <p style="font-size: 1.125rem; color: var(--doc-text-color); margin-bottom: 32px;">
+          MetaOWL uses file-based routing. The directory structure in <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">pages/</code> directly maps to URL routes.
         </p>
 
-        <h2 id="how-it-works" style="font-size: 1.5rem; font-weight: 600; color: #eee; margin-top: 32px; margin-bottom: 16px;">How It Works</h2>
-        <p style="color: #9ca3af; margin-bottom: 16px;">Create pages in the <code style="background: #374151; padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">src/pages/</code> directory:</p>
-        <pre class="language-javascript" style="background: #1f2937; color: #f9fafb; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">src/pages/index/       → /
+        <h2 id="how-it-works" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">How It Works</h2>
+        <p style="color: var(--doc-text-color); margin-bottom: 16px;">Create pages in the <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">src/pages/</code> directory:</p>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">src/pages/index/       → /
 src/pages/about/      → /about
 src/pages/contact/    → /contact</code></pre>
 
-        <h2 id="static-routes" style="font-size: 1.5rem; font-weight: 600; color: #eee; margin-top: 32px; margin-bottom: 16px;">Static Routes</h2>
-        <p style="color: #9ca3af; margin-bottom: 16px;">For static pages, create a folder with an <code style="background: #374151; padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">Index.js</code> file:</p>
+        <h2 id="static-routes" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Static Routes</h2>
+        <p style="color: var(--doc-text-color); margin-bottom: 16px;">For static pages, create a folder with an <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">Index.js</code> file:</p>
 
-        <h2 id="dynamic-routes" style="font-size: 1.5rem; font-weight: 600; color: #eee; margin-top: 32px; margin-bottom: 16px;">Dynamic Routes</h2>
-        <p style="color: #9ca3af; margin-bottom: 16px;">Use square brackets to create dynamic route parameters:</p>
-        <pre class="language-javascript" style="background: #1f2937; color: #f9fafb; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">src/pages/user/[id]/User.js     → /user/:id
+        <h2 id="dynamic-routes" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Dynamic Routes</h2>
+        <p style="color: var(--doc-text-color); margin-bottom: 16px;">Use square brackets to create dynamic route parameters:</p>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">src/pages/user/[id]/User.js     → /user/:id
 src/pages/post/[slug]/Post.js  → /post/:slug</code></pre>
 
-        <h2 id="navigation" style="font-size: 1.5rem; font-weight: 600; color: #eee; margin-top: 32px; margin-bottom: 16px;">Programmatic Navigation</h2>
-        <pre class="language-javascript" style="background: #1f2937; color: #f9fafb; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { router } from 'metaowl'
+        <h2 id="navigation" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Programmatic Navigation</h2>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { router } from 'metaowl'
 
 router.push('/about')
 router.replace('/login')

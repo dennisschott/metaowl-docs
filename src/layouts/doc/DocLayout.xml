@@ -6,7 +6,7 @@
         <t t-set-slot="menu-toggle">
           <button
             t-on-click="toggleSidebar"
-            class="md:hidden mr-2 p-1.5 rounded-md text-gray-400 hover:text-gray-100 hover:bg-gray-700 flex items-center justify-center"
+            class="md:hidden mr-2 p-1.5 rounded-md text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center justify-center"
           >
             <ion-icon t-att-name="state.isSidebarOpen ? 'close-outline' : 'menu-outline'" class="text-xl"/>
           </button>
@@ -21,7 +21,7 @@
       <div class="flex flex-1">
         <!-- Sidebar -->
         <aside
-          class="fixed left-0 top-14 bottom-0 w-64 bg-gray-800 border-r border-gray-700 overflow-y-auto transition-transform duration-300 z-40"
+          class="fixed left-0 top-14 bottom-0 w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 overflow-y-auto transition-transform duration-300 z-40"
           t-att-class="state.isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'"
         >
           <nav class="p-4">
@@ -32,7 +32,7 @@
                   t-att-target="link.external ? '_blank' : undefined"
                   t-on-click="closeSidebar"
                   class="block px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center justify-between"
-                  t-att-class="isActive(link.href) ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700'"
+                  t-att-class="isActive(link.href) ? 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white' : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white'"
                 >
                   <span t-esc="link.label"/>
                   <t t-if="link.external">

@@ -1,0 +1,17 @@
+<templates>
+  <t t-name="NotFound">
+    <div class="not-found-wrapper">
+      <div class="not-found-content">
+        <div class="not-found-code">404</div>
+        <h1 class="not-found-title">Page Not Found</h1>
+        <p class="not-found-text">
+          The page you are looking for does not exist or has been moved.
+        </p>
+        <div class="not-found-actions">
+          <a href="/" class="not-found-btn-primary">← Back to Home</a>
+          <a href="/docs/getting-started" class="not-found-btn-secondary">Getting Started</a>
+        </div>
+      </div>
+    </div>
+  </t>
+</templates>

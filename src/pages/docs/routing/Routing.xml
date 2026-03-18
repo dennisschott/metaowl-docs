@@ -18,8 +18,44 @@ src/pages/contact/    → /contact</code></pre>
 
         <h2 id="dynamic-routes" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Dynamic Routes</h2>
         <p style="color: var(--doc-text-color); margin-bottom: 16px;">Use square brackets to create dynamic route parameters:</p>
-        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">src/pages/user/[id]/User.js     → /user/:id
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 16px;"><code class="language-javascript">src/pages/user/[id]/User.js     → /user/:id
 src/pages/post/[slug]/Post.js  → /post/:slug</code></pre>
+        <p style="color: var(--doc-text-color); margin-bottom: 16px;">
+          Access the parameter inside your component via <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">getCurrentRoute().params</code>:
+        </p>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 16px;"><code class="language-javascript">import { getCurrentRoute } from 'metaowl'
+
+export default class Post extends Component {
+  setup() {
+    const route = getCurrentRoute()
+    this.slug = route?.params?.slug
+  }
+}</code></pre>
+        <p style="color: var(--doc-text-color); margin-bottom: 24px;">
+          <a href="/docs/routing/hello-world" style="color: #3b82f6; text-decoration: none;">→ See the live demo</a>
+        </p>
+
+        <h2 id="catch-all-404" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Catch-All &amp; 404 Pages</h2>
+        <p style="color: var(--doc-text-color); margin-bottom: 16px;">
+          Use a <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">[...param]</code> directory to create a catch-all route that renders for any unmatched URL.
+          This is how you implement a 404 page:
+        </p>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 16px;"><code class="language-javascript">src/pages/[...path]/NotFound.js  → matches any unmatched URL</code></pre>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">// pages/[...path]/NotFound.js
+import { Component } from '@odoo/owl'
+import { Meta } from 'metaowl'
+
+export default class NotFound extends Component {
+  static template = 'NotFound'
+
+  setup() {
+    Meta.title('404 – Page Not Found')
+  }
+}</code></pre>
+        <p style="color: var(--doc-text-color); margin-bottom: 16px;">
+          The directory name can be anything starting with <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">[...</code> — e.g. <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">[...path]</code>, <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">[...404]</code>, <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">[...slug]</code>.
+          If no catch-all route is defined, metaowl shows a built-in minimal 404 message instead of a blank or broken page.
+        </p>
 
         <h2 id="navigation" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Programmatic Navigation</h2>
         <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { router } from 'metaowl'

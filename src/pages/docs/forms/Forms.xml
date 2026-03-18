@@ -9,32 +9,31 @@
 
         <h2 id="basic-form" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Basic Form</h2>
         <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { Component } from '@odoo/owl'
-import { useForm, Fetch } from 'metaowl'
+import { useForm, validators, Fetch } from 'metaowl'
 
 export default class LoginPage extends Component {
   static template = 'LoginPage'
 
   setup() {
     this.form = useForm({
-      schema: {
-        email:    { required: true, type: 'email' },
-        password: { required: true, minLength: 8 },
-      },
-      onSubmit: async (values) => {
-        await Fetch.url('/api/login', 'POST', values)
-        this.env.router.navigate('/dashboard')
-      },
+      email:    { default: '', validation: [validators.required(), validators.email()] },
+      password: { default: '', validation: [validators.required(), validators.minLength(8)] },
+    })
+
+    this.submitHandler = this.form.handleSubmit(async (values) => {
+      await Fetch.url('/api/login', 'POST', values)
+      this.env.router.navigate('/dashboard')
     })
   }
 }</code></pre>
 
         <pre class="language-xml" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-xml">&lt;templates&gt;
   &lt;t t-name="LoginPage"&gt;
-    &lt;form t-on-submit.prevent="form.submit"&gt;
-      &lt;input t-model="form.values.email" type="email" placeholder="E-Mail" /&gt;
+    &lt;form t-on-submit.prevent="submitHandler"&gt;
+      &lt;input t-model="form.fields.email" type="email" placeholder="E-Mail" /&gt;
       &lt;span t-if="form.errors.email" t-esc="form.errors.email" class="error"/&gt;
 
-      &lt;input t-model="form.values.password" type="password" placeholder="Password" /&gt;
+      &lt;input t-model="form.fields.password" type="password" placeholder="Password" /&gt;
       &lt;span t-if="form.errors.password" t-esc="form.errors.password" class="error"/&gt;
 
       &lt;button type="submit" t-att-disabled="form.isSubmitting"&gt;
@@ -45,48 +44,58 @@ export default class LoginPage extends Component {
   &lt;/t&gt;
 &lt;/templates&gt;</code></pre>
 
-        <h2 id="validation-schema" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Validation Schema</h2>
-        <p style="color: var(--doc-text-color); margin-bottom: 16px;">Each field in the schema supports the following validation rules:</p>
+        <h2 id="validation-schema" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Built-in Validators</h2>
+        <p style="color: var(--doc-text-color); margin-bottom: 16px;">The <code>validators</code> helper provides ready-to-use validator functions for field validation:</p>
 
         <div style="overflow-x: auto; margin-bottom: 24px;">
           <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
             <thead>
               <tr style="border-bottom: 2px solid var(--doc-border-color);">
-                <th style="text-align: left; padding: 8px 12px; color: var(--doc-heading-color);">Rule</th>
-                <th style="text-align: left; padding: 8px 12px; color: var(--doc-heading-color);">Type</th>
+                <th style="text-align: left; padding: 8px 12px; color: var(--doc-heading-color);">Validator</th>
+                <th style="text-align: left; padding: 8px 12px; color: var(--doc-heading-color);">Usage</th>
                 <th style="text-align: left; padding: 8px 12px; color: var(--doc-heading-color);">Description</th>
               </tr>
             </thead>
             <tbody>
               <tr style="border-bottom: 1px solid var(--doc-border-color);">
-                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>required</code></td>
-                <td style="padding: 8px 12px; color: var(--doc-text-color);">boolean</td>
+                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>validators.required()</code></td>
+                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>validators.required('msg')</code></td>
                 <td style="padding: 8px 12px; color: var(--doc-text-color);">Field must not be empty</td>
               </tr>
               <tr style="border-bottom: 1px solid var(--doc-border-color);">
-                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>type</code></td>
-                <td style="padding: 8px 12px; color: var(--doc-text-color);">string</td>
-                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>'email'</code>, <code>'number'</code>, <code>'url'</code></td>
+                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>validators.email()</code></td>
+                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>validators.email('msg')</code></td>
+                <td style="padding: 8px 12px; color: var(--doc-text-color);">Must be a valid email address</td>
               </tr>
               <tr style="border-bottom: 1px solid var(--doc-border-color);">
-                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>minLength</code></td>
-                <td style="padding: 8px 12px; color: var(--doc-text-color);">number</td>
+                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>validators.minLength(n)</code></td>
+                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>validators.minLength(3, 'msg')</code></td>
                 <td style="padding: 8px 12px; color: var(--doc-text-color);">Minimum string length</td>
               </tr>
               <tr style="border-bottom: 1px solid var(--doc-border-color);">
-                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>maxLength</code></td>
-                <td style="padding: 8px 12px; color: var(--doc-text-color);">number</td>
+                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>validators.maxLength(n)</code></td>
+                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>validators.maxLength(50, 'msg')</code></td>
                 <td style="padding: 8px 12px; color: var(--doc-text-color);">Maximum string length</td>
               </tr>
               <tr style="border-bottom: 1px solid var(--doc-border-color);">
-                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>min</code></td>
-                <td style="padding: 8px 12px; color: var(--doc-text-color);">number</td>
+                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>validators.min(n)</code></td>
+                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>validators.min(0, 'msg')</code></td>
                 <td style="padding: 8px 12px; color: var(--doc-text-color);">Minimum numeric value</td>
               </tr>
-              <tr>
-                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>max</code></td>
-                <td style="padding: 8px 12px; color: var(--doc-text-color);">number</td>
+              <tr style="border-bottom: 1px solid var(--doc-border-color);">
+                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>validators.max(n)</code></td>
+                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>validators.max(100, 'msg')</code></td>
                 <td style="padding: 8px 12px; color: var(--doc-text-color);">Maximum numeric value</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--doc-border-color);">
+                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>validators.url()</code></td>
+                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>validators.url('msg')</code></td>
+                <td style="padding: 8px 12px; color: var(--doc-text-color);">Must be a valid URL</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>validators.match(field)</code></td>
+                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>validators.match('password', 'msg')</code></td>
+                <td style="padding: 8px 12px; color: var(--doc-text-color);">Value must match another field</td>
               </tr>
             </tbody>
           </table>
@@ -95,33 +104,139 @@ export default class LoginPage extends Component {
         <h2 id="form-instance" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Form Instance</h2>
         <p style="color: var(--doc-text-color); margin-bottom: 16px;"><code>useForm()</code> returns a reactive form instance with the following properties and methods:</p>
         <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">// Reactive state
-form.values       // Current field values
-form.errors       // Validation errors by field
-form.touched      // Fields the user has interacted with
-form.isSubmitting // true while onSubmit is running
-form.isValid      // true if all validation passes
-form.isDirty      // true if values differ from initialValues
+form.fields       // Current field values (reactive object)
+form.errors       // Validation errors by field (null = no error)
+form.touched      // Per-field touched state
+form.dirty        // Per-field dirty state
+form.isSubmitting // true while handleSubmit callback is running
+form.isValid      // true if all errors are null
+form.isDirty      // true if any field has changed from default
+form.isTouched    // true if any field has been touched
 
 // Methods
-form.submit()                 // Trigger validation + onSubmit
-form.setValue('field', value) // Update a single field
-form.setValues({ ... })       // Update multiple fields
-form.setError('field', 'msg') // Manually set an error
-form.clearErrors()            // Clear all errors
-form.reset()                  // Reset to initialValues
-form.validate()               // Run validation without submitting</code></pre>
+form.handleSubmit(fn)         // Create submit handler with validation
+form.setValue('field', value) // Update a single field value
+form.setTouched('field')      // Mark a field as touched
+form.setAllTouched()          // Mark all fields as touched
+form.validateField('field')   // Validate a single field (async)
+form.validate()               // Validate all fields (async)
+form.reset()                  // Reset to default values
+form.register('field')        // Get bindable input props</code></pre>
 
-        <h2 id="initial-values" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Initial Values</h2>
+        <h2 id="initial-values" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Default Values</h2>
+        <p style="color: var(--doc-text-color); margin-bottom: 16px;">Set initial field values using the <code>default</code> property per field:</p>
         <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">this.form = useForm({
-  initialValues: {
-    email: '',
-    role: 'user',
-  },
-  schema: {
-    email: { required: true, type: 'email' },
-  },
-  onSubmit: async (values) => { ... },
-})</code></pre>
+  email: { default: '', validation: [validators.required(), validators.email()] },
+  role:  { default: 'user' },  // No validation needed
+})
+
+// Access values via form.fields
+console.log(this.form.fields.email)  // ''
+console.log(this.form.fields.role)   // 'user'</code></pre>
+
+        <h2 id="try-it" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Try It Yourself</h2>
+        <p style="color: var(--doc-text-color); margin-bottom: 16px;">
+          This form demonstrates all <code>useForm()</code> features: validation, error handling, form state tracking, and async submission.
+          Open the browser console to see logged data when interacting with the form.
+        </p>
+
+        <!-- Interactive Form Example -->
+        <div class="bg-gray-100 dark:bg-[#1e202e] border border-gray-300 dark:border-gray-700 rounded-lg p-6 mb-8">
+          <form t-on-submit.prevent="submitHandler" class="space-y-4">
+            <!-- Name Field -->
+            <div>
+              <label for="name" class="block font-medium text-gray-700 dark:text-gray-300 mb-1.5 text-sm">Name</label>
+              <input
+                id="name"
+                t-model="fields.name"
+                type="text"
+                placeholder="Enter your name"
+                class="w-full px-3 py-2.5 text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 border border-gray-300 dark:border-gray-600 rounded-md placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
+              />
+              <p t-if="errors.name" class="text-red-600 dark:text-red-400 text-xs mt-1" t-esc="errors.name"/>
+              <p t-if="touched.name" class="text-gray-500 dark:text-gray-400 text-xs mt-1">✓ Field touched</p>
+            </div>
+
+            <!-- Email Field -->
+            <div>
+              <label for="email" class="block font-medium text-gray-700 dark:text-gray-300 mb-1.5 text-sm">Email</label>
+              <input
+                id="email"
+                t-model="fields.email"
+                type="email"
+                placeholder="Enter your email"
+                class="w-full px-3 py-2.5 text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 border border-gray-300 dark:border-gray-600 rounded-md placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
+              />
+              <p t-if="errors.email" class="text-red-600 dark:text-red-400 text-xs mt-1" t-esc="errors.email"/>
+              <p t-if="touched.email" class="text-gray-500 dark:text-gray-400 text-xs mt-1">✓ Field touched</p>
+            </div>
+
+            <!-- Submit Button -->
+            <div>
+              <button
+                type="submit"
+                t-att-disabled="formState.isSubmitting"
+                class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed text-white text-sm font-medium rounded-md transition-colors cursor-pointer"
+              >
+                <t t-if="formState.isSubmitting">Submitting...</t>
+                <t t-else="">Submit</t>
+              </button>
+            </div>
+          </form>
+
+          <!-- Form State Display -->
+          <div class="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
+            <h4 class="text-sm font-semibold mb-3" style="color: var(--doc-heading-color);">Form State (Live)</h4>
+            <div class="grid grid-cols-3 gap-2 text-xs">
+              <div class="p-2 bg-white dark:bg-gray-800 rounded border border-gray-200 dark:border-gray-700">
+                <span class="text-gray-500 dark:text-gray-400">isValid:</span>
+                <span class="font-semibold ml-1" t-att-class="(!errors.name and !errors.email) ? 'text-emerald-500' : 'text-red-500'" t-esc="!errors.name and !errors.email"/>
+              </div>
+              <div class="p-2 bg-white dark:bg-gray-800 rounded border border-gray-200 dark:border-gray-700">
+                <span class="text-gray-500 dark:text-gray-400">isDirty:</span>
+                <span class="font-semibold ml-1" t-att-class="(dirty.name or dirty.email) ? 'text-amber-500' : 'text-gray-500 dark:text-gray-400'" t-esc="dirty.name or dirty.email"/>
+              </div>
+              <div class="p-2 bg-white dark:bg-gray-800 rounded border border-gray-200 dark:border-gray-700">
+                <span class="text-gray-500 dark:text-gray-400">isSubmitting:</span>
+                <span class="font-semibold ml-1" t-att-class="formState.isSubmitting ? 'text-violet-500' : 'text-gray-500 dark:text-gray-400'" t-esc="formState.isSubmitting"/>
+              </div>
+            </div>
+
+            <!-- Current Values Display -->
+            <div class="mt-3">
+              <h4 class="text-sm font-semibold mb-2" style="color: var(--doc-heading-color);">Current Values</h4>
+              <pre class="bg-gray-200 dark:bg-gray-900 text-gray-800 dark:text-gray-200 rounded-md p-3 text-xs overflow-x-auto" t-esc="getFieldsJson()"/>
+            </div>
+
+            <!-- Current Errors Display -->
+            <div class="mt-3">
+              <h4 class="text-sm font-semibold mb-2" style="color: var(--doc-heading-color);">Errors</h4>
+              <pre class="bg-gray-200 dark:bg-gray-900 text-gray-800 dark:text-gray-200 rounded-md p-3 text-xs overflow-x-auto" t-esc="getErrorsJson()"/>
+            </div>
+
+            <!-- Utility Buttons -->
+            <div class="mt-4 flex gap-2 flex-wrap">
+              <button
+                t-on-click="showValues"
+                class="px-3.5 py-2 bg-gray-500 hover:bg-gray-600 dark:bg-gray-600 dark:hover:bg-gray-500 text-white text-xs rounded-md transition-colors cursor-pointer"
+              >
+                Log Values to Console
+              </button>
+              <button
+                t-on-click="validateForm"
+                class="px-3.5 py-2 bg-violet-600 hover:bg-violet-700 text-white text-xs rounded-md transition-colors cursor-pointer"
+              >
+                Validate Form
+              </button>
+              <button
+                t-on-click="handleReset"
+                class="px-3.5 py-2 bg-red-500 hover:bg-red-600 text-white text-xs rounded-md transition-colors cursor-pointer"
+              >
+                Reset Form
+              </button>
+            </div>
+          </div>
+        </div>
       </article>
     </div>
   </t>

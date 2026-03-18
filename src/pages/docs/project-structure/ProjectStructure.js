@@ -6,11 +6,9 @@ export default class ProjectStructure extends Component {
   static components = {}
 
   setup() {
-    if (Meta) {
-      Meta.title('Project Structure - MetaOWL')
-      Meta.description(
-        'Understand the MetaOWL project structure and file organization.',
-      )
-    }
+    Meta.title('Project Structure - MetaOWL')
+    Meta.description(
+      'Understand the MetaOWL project structure and file organization.',
+    )
   }
 }

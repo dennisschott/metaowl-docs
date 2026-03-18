@@ -6,10 +6,8 @@ export default class Forms extends Component {
   static components = {}
 
   setup() {
-    if (Meta) {
-      Meta.title('Form Handling - MetaOWL')
-      Meta.description('Build validated forms with useForm() in MetaOWL.')
-    }
+    Meta.title('Form Handling - MetaOWL')
+    Meta.description('Build validated forms with useForm() in MetaOWL.')
 
     // Initialize form with all possible features
     this.form = useForm({

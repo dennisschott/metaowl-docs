@@ -6,10 +6,8 @@ export default class MetaDocs extends Component {
   static components = {}
 
   setup() {
-    if (Meta) {
-      Meta.title('Meta Tags - MetaOWL')
-      Meta.description('Learn how to manage meta tags for SEO in MetaOWL.')
-    }
+    Meta.title('Meta Tags - MetaOWL')
+    Meta.description('Learn how to manage meta tags for SEO in MetaOWL.')
 
     this.state = useState({
       inputTitle: 'New Page Title',
@@ -19,20 +17,17 @@ export default class MetaDocs extends Component {
     })
 
     this.setMetaTags = () => {
-      if (Meta) {
-        Meta.title(this.state.inputTitle)
-        Meta.description(this.state.inputDescription)
-      }
+      Meta.title(this.state.inputTitle)
+      Meta.description(this.state.inputDescription)
+
       this.state.currentTitle = document.title
       this.state.currentDescription =
         document.querySelector('meta[name="description"]')?.content || ''
     }
 
     this.resetMetaTags = () => {
-      if (Meta) {
-        Meta.title('Meta Tags - MetaOWL')
-        Meta.description('Learn how to manage meta tags for SEO in MetaOWL.')
-      }
+      Meta.title('Meta Tags - MetaOWL')
+      Meta.description('Learn how to manage meta tags for SEO in MetaOWL.')
 
       this.state.currentTitle = document.title
       this.state.currentDescription =

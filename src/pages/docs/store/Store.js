@@ -29,10 +29,8 @@ export default class StorePage extends Component {
   static components = {}
 
   setup() {
-    if (Meta) {
-      Meta.title('Store - MetaOWL')
-      Meta.description('Learn how to use state management with MetaOWL Store.')
-    }
+    Meta.title('Store - MetaOWL')
+    Meta.description('Learn how to use state management with MetaOWL Store.')
 
     // Use useState with the demoStore.state directly
     this.state = useState(demoStore.state)

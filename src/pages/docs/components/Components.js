@@ -6,10 +6,8 @@ export default class Components extends Component {
   static components = {}
 
   setup() {
-    if (Meta) {
-      Meta.title('Components - MetaOWL')
-      Meta.description('Learn how to create and use OWL components in MetaOWL.')
-    }
+    Meta.title('Components - MetaOWL')
+    Meta.description('Learn how to create and use OWL components in MetaOWL.')
 
     this.state = useState({
       buttonLabel: 'Click me!',

@@ -6,7 +6,9 @@ export default class ApiReference extends Component {
   static components = {}
 
   setup() {
-    Meta.title('API Reference - MetaOWL')
-    Meta.description('Complete API reference for MetaOWL framework.')
+    if (Meta) {
+      Meta.title('API Reference - MetaOWL')
+      Meta.description('Complete API reference for MetaOWL framework.')
+    }
   }
 }

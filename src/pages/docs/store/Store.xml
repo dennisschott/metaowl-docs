@@ -11,35 +11,35 @@
         <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { createStore } from 'metaowl'
 
 const store = createStore({
-  state: {
-    count: 0,
-    user: null
-  },
-  mutations: {
-    increment(state) {
-      state.count++
-    },
-    setUser(state, user) {
-      state.user = user
-    }
-  },
-  actions: {
-    async fetchUser({ commit }) {
-      const user = await fetch('/api/user').then(r => r.json())
-      commit('setUser', user)
-    }
-  }
-})</code></pre>
+  count: 0,
+  user: null
+})
+
+// Access state directly - it's reactive!
+store.count
+
+// Modify state directly
+store.count++
+
+// Use $patch for batch updates
+store.$patch({ count: 10, user: { name: 'John' } })
+
+// Reset to initial state
+store.$reset()</code></pre>
 
         <h2 id="using-store" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Using the Store</h2>
-        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">// Access state
-store.state.count
+        <p style="color: var(--doc-text-color); margin-bottom: 16px;">The store is a reactive object. Simply read and write properties directly:</p>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">// Access state directly - reactive!
+store.count
 
-// Commit mutations
-store.commit('increment')
+// Modify state directly
+store.count = 5
 
-// Dispatch actions
-store.dispatch('fetchUser')</code></pre>
+// Use $patch for batch updates
+store.$patch({ count: 10, user: { name: 'John' } })
+
+// Reset to initial state
+store.$reset()</code></pre>
 
         <h2 id="persistence" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Persistence</h2>
         <p style="color: var(--doc-text-color); margin-bottom: 16px;">Persist state to localStorage:</p>
@@ -51,6 +51,22 @@ const store = createStore({
     createPersistencePlugin({ key: 'app-state' })
   ]
 })</code></pre>
+
+        <h2 id="try-it" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Try It Yourself</h2>
+        <!-- Interactive Example -->
+        <div class="bg-gray-100 dark:bg-[#1e202e] border border-gray-300 dark:border-none rounded-lg p-6 mb-8">
+          <p class="text-gray-700 dark:text-gray-300 mb-4 text-sm">This counter is powered by the MetaOWL Store. Try out the buttons!</p>
+          
+          <div class="flex items-center gap-4 mb-4">
+            <button t-on-click="decrement" class="px-5 py-3 bg-red-500 text-white border-none rounded-md cursor-pointer text-lg font-bold hover:bg-red-600 transition-colors">−</button>
+            <span class="text-4xl font-bold text-gray-900 dark:text-white min-w-[60px] text-center" t-esc="state.count"/>
+            <button t-on-click="increment" class="px-5 py-3 bg-green-500 text-white border-none rounded-md cursor-pointer text-lg font-bold hover:bg-green-600 transition-colors">+</button>
+          </div>
+          
+          <div class="flex gap-2 mb-4">
+            <button t-on-click="reset" class="px-4 py-2 bg-gray-500 text-white border-none rounded-md cursor-pointer text-sm font-medium hover:bg-gray-600 transition-colors">Reset</button>
+          </div>
+        </div>
       </article>
     </div>
   </t>

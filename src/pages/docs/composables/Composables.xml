@@ -1,0 +1,136 @@
+<templates>
+  <t t-name="Composables">
+    <div class="p-8">
+      <article>
+        <h1 style="font-size: 2.25rem; font-weight: 700; color: var(--doc-heading-color); margin-bottom: 16px;">Composables / Hooks</h1>
+        <p style="font-size: 1.125rem; color: var(--doc-text-color); margin-bottom: 32px;">
+          MetaOWL provides a collection of reusable OWL hooks (composables) for common patterns like authentication, localStorage, and data fetching.
+        </p>
+
+        <h2 id="overview" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Available Composables</h2>
+
+        <div style="overflow-x: auto; margin-bottom: 24px;">
+          <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+            <thead>
+              <tr style="border-bottom: 2px solid var(--doc-border-color);">
+                <th style="text-align: left; padding: 8px 12px; color: var(--doc-heading-color);">Composable</th>
+                <th style="text-align: left; padding: 8px 12px; color: var(--doc-heading-color);">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid var(--doc-border-color);">
+                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>useAuth()</code></td>
+                <td style="padding: 8px 12px; color: var(--doc-text-color);">Authentication state linked to OdooService</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--doc-border-color);">
+                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>useLocalStorage(key, default)</code></td>
+                <td style="padding: 8px 12px; color: var(--doc-text-color);">Reactive localStorage access with cross-tab sync</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--doc-border-color);">
+                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>useFetch(url, options)</code></td>
+                <td style="padding: 8px 12px; color: var(--doc-text-color);">Data fetching with loading/error states</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--doc-border-color);">
+                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>useDebounce(value, wait)</code></td>
+                <td style="padding: 8px 12px; color: var(--doc-text-color);">Debounced reactive value</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--doc-border-color);">
+                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>useThrottle(fn, wait)</code></td>
+                <td style="padding: 8px 12px; color: var(--doc-text-color);">Throttled function</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--doc-border-color);">
+                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>useWindowSize()</code></td>
+                <td style="padding: 8px 12px; color: var(--doc-text-color);">Reactive window dimensions</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--doc-border-color);">
+                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>useOnlineStatus()</code></td>
+                <td style="padding: 8px 12px; color: var(--doc-text-color);">Reactive network connectivity state</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--doc-border-color);">
+                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>useAsyncState(fn)</code></td>
+                <td style="padding: 8px 12px; color: var(--doc-text-color);">Async operation state management</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>useCache(key, default)</code></td>
+                <td style="padding: 8px 12px; color: var(--doc-text-color);">Reactive cache access</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="use-auth" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">useAuth()</h2>
+        <p style="color: var(--doc-text-color); margin-bottom: 16px;">Authentication state linked to <code>OdooService</code>:</p>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { useAuth } from 'metaowl'
+
+class MyComponent extends Component {
+  setup() {
+    const { user, isLoggedIn, isLoading, login, logout } = useAuth()
+
+    this.state = { user, isLoggedIn, isLoading }
+    this.login = login
+    this.logout = logout
+  }
+}</code></pre>
+
+        <h2 id="use-local-storage" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">useLocalStorage()</h2>
+        <p style="color: var(--doc-text-color); margin-bottom: 16px;">Reactive localStorage with automatic cross-tab synchronisation:</p>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { useLocalStorage } from 'metaowl'
+
+class ThemeToggle extends Component {
+  setup() {
+    this.theme = useLocalStorage('theme', 'light')
+  }
+
+  toggle() {
+    this.theme.value = this.theme.value === 'light' ? 'dark' : 'light'
+    // Automatically saved to localStorage and synced to other tabs
+  }
+}</code></pre>
+
+        <h2 id="use-fetch" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">useFetch()</h2>
+        <p style="color: var(--doc-text-color); margin-bottom: 16px;">Fetch data with reactive <code>loading</code> and <code>error</code> states:</p>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { useFetch } from 'metaowl'
+
+class UserList extends Component {
+  setup() {
+    const { data, loading, error, refresh } = useFetch('/api/users', {
+      immediate: true,
+      transform: (res) => res.results,
+    })
+
+    this.state = { data, loading, error }
+    this.refresh = refresh
+  }
+}</code></pre>
+
+        <h2 id="use-debounce" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">useDebounce() &amp; useThrottle()</h2>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { useState } from '@odoo/owl'
+import { useDebounce, useThrottle } from 'metaowl'
+
+class SearchBox extends Component {
+  setup() {
+    this.query = useState({ value: '' })
+
+    // Updates 400ms after the user stops typing
+    this.debouncedQuery = useDebounce(this.query, 400)
+
+    // Called at most once every 200ms
+    this.throttledSearch = useThrottle((q) => this.search(q), 200)
+  }
+}</code></pre>
+
+        <h2 id="use-window-size" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">useWindowSize() &amp; useOnlineStatus()</h2>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { useWindowSize, useOnlineStatus } from 'metaowl'
+
+class ResponsiveComponent extends Component {
+  setup() {
+    const { width, height } = useWindowSize()
+    const isOnline = useOnlineStatus()
+
+    this.state = { width, height, isOnline }
+  }
+}</code></pre>
+      </article>
+    </div>
+  </t>
+</templates>

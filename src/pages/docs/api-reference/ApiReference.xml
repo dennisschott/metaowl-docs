@@ -42,10 +42,121 @@ Meta.description('Description')
 Meta.ogTitle('OG Title')</code></pre>
 
         <h2 id="layouts" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Layouts</h2>
-        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { discoverLayouts, registerLayout } from 'metaowl'
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { registerLayout, getLayout, setDefaultLayout, resolveLayout } from 'metaowl'
+
+registerLayout('admin', AdminLayout)
+setDefaultLayout('admin')
+const Layout = getLayout('admin')
 
 // In page component
-static layout = 'doc'</code></pre>
+static layout = 'admin'   // or false to disable</code></pre>
+
+        <h2 id="cache" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Cache</h2>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { Cache } from 'metaowl'
+
+await Cache.set('key', { foo: 'bar' })
+const value = await Cache.get('key')
+await Cache.remove('key')
+await Cache.clear()
+const keys = await Cache.keys()</code></pre>
+
+        <h2 id="configure-owl" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">configureOwl()</h2>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { configureOwl } from 'metaowl'
+
+// Call before boot()
+configureOwl({
+  warnIfNoStaticProps: true,
+  willStartTimeout: 10000,
+  translatableAttributes: ['title', 'placeholder', 'label', 'alt'],
+})</code></pre>
+
+        <h2 id="build-routes" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">buildRoutes()</h2>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { buildRoutes } from 'metaowl'
+
+// Converts import.meta.glob result into a route table
+const routes = buildRoutes(import.meta.glob('./pages/**/*.js', { eager: true }))</code></pre>
+
+        <h2 id="router-guards" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Router Guards</h2>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { beforeEach, afterEach } from 'metaowl'
+
+beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth &amp;&amp; !isLoggedIn) {
+    next('/login')
+  } else {
+    next()
+  }
+})
+
+afterEach((to, from) => {
+  console.log('Navigated to', to.path)
+})</code></pre>
+
+        <h2 id="error-boundary" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">ErrorBoundary</h2>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { ErrorBoundary } from 'metaowl'
+
+const app = ErrorBoundary.wrap(AppComponent)
+app.mount(document.body)
+
+ErrorBoundary.onError((error, context) => {
+  console.error(error, context)
+})</code></pre>
+
+        <h2 id="i18n" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">I18n</h2>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { I18n } from 'metaowl'
+
+await I18n.load({ locale: 'de', messages: { hello: 'Hallo, {name}!' } })
+I18n.t('hello', { name: 'Max' })  // "Hallo, Max!"
+I18n.n(1234.5, 'currency')         // "€1.234,50"
+I18n.d(new Date(), 'short')        // "18.03.2026"
+await I18n.setLocale('en')
+console.log(I18n.locale)           // "en"</code></pre>
+
+        <h2 id="forms" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">useForm()</h2>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { useForm } from 'metaowl'
+
+const form = useForm({
+  schema: {
+    email:    { required: true, type: 'email' },
+    password: { required: true, minLength: 8 },
+  },
+  initialValues: { email: '', password: '' },
+  onSubmit: async (values) => { /* ... */ },
+})
+
+// form.values / form.errors / form.isSubmitting / form.isValid
+// form.submit() / form.reset() / form.validate()</code></pre>
+
+        <h2 id="odoo-service" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">OdooService</h2>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { OdooService } from 'metaowl'
+
+OdooService.configure({ baseUrl, database, username, password })
+await OdooService.authenticate()
+await OdooService.searchRead('res.partner', { domain: [], fields: ['name'], limit: 10 })
+await OdooService.create('res.partner', { name: 'Test' })
+await OdooService.write('res.partner', [id], { name: 'Updated' })
+await OdooService.unlink('res.partner', [id])
+await OdooService.call('res.partner', 'action_archive', [[id]], {})</code></pre>
+
+        <h2 id="composables" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Composables</h2>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import {
+  useAuth,
+  useLocalStorage,
+  useFetch,
+  useDebounce,
+  useThrottle,
+  useWindowSize,
+  useOnlineStatus,
+  useAsyncState,
+  useCache,
+} from 'metaowl'
+
+const { user, isLoggedIn, login, logout } = useAuth()
+const theme = useLocalStorage('theme', 'light')
+const { data, loading, error, refresh } = useFetch('/api/users')
+const debounced = useDebounce(query, 400)
+const throttledFn = useThrottle(fn, 200)
+const { width, height } = useWindowSize()
+const isOnline = useOnlineStatus()</code></pre>
       </article>
     </div>
   </t>

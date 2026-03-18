@@ -1,0 +1,73 @@
+<templates>
+  <t t-name="I18n">
+    <div class="p-8">
+      <article>
+        <h1 style="font-size: 2.25rem; font-weight: 700; color: var(--doc-heading-color); margin-bottom: 16px;">i18n / Internationalization</h1>
+        <p style="font-size: 1.125rem; color: var(--doc-text-color); margin-bottom: 32px;">
+          MetaOWL includes a full-featured translation system with pluralization, interpolation, and locale switching.
+        </p>
+
+        <h2 id="loading-messages" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Loading Messages</h2>
+        <p style="color: var(--doc-text-color); margin-bottom: 16px;">Call <code>I18n.load()</code> once before <code>boot()</code>, typically in <code>src/metaowl.js</code>:</p>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { I18n, boot } from 'metaowl'
+
+await I18n.load({
+  locale: 'de',
+  messages: {
+    welcome: 'Willkommen, {name}!',
+    goodbye: 'Auf Wiedersehen!',
+    items: '{count, plural, one {# Artikel} other {# Artikel}}',
+  },
+})
+
+boot()</code></pre>
+
+        <h2 id="translating" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Translating in Components</h2>
+        <p style="color: var(--doc-text-color); margin-bottom: 16px;">Use <code>I18n.t()</code> in JavaScript and OWL templates:</p>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { I18n } from 'metaowl'
+
+// Simple translation
+I18n.t('goodbye')              // "Auf Wiedersehen!"
+
+// With interpolation
+I18n.t('welcome', { name: 'Max' })   // "Willkommen, Max!"
+
+// With pluralization
+I18n.t('items', { count: 1 })  // "1 Artikel"
+I18n.t('items', { count: 5 })  // "5 Artikel"</code></pre>
+
+        <pre class="language-xml" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-xml">&lt;!-- In OWL templates --&gt;
+&lt;h1 t-esc="I18n.t('welcome', { name: state.username })"/&gt;
+&lt;span t-esc="I18n.t('items', { count: state.cartItems })"/&gt;</code></pre>
+
+        <h2 id="locale-switching" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Switching Locale</h2>
+        <p style="color: var(--doc-text-color); margin-bottom: 16px;">Switch locale at runtime — MetaOWL re-renders affected components automatically:</p>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { I18n } from 'metaowl'
+
+await I18n.setLocale('en')
+console.log(I18n.locale)  // "en"</code></pre>
+
+        <h2 id="number-date-formatting" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Number &amp; Date Formatting</h2>
+        <p style="color: var(--doc-text-color); margin-bottom: 16px;">Format numbers and dates using locale-aware helpers:</p>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">// Number formatting
+I18n.n(1234.5, 'currency')   // "€1.234,50"
+
+// Date formatting
+I18n.d(new Date(), 'short')  // "18.03.2026"</code></pre>
+
+        <p style="color: var(--doc-text-color); margin-bottom: 16px;">Define custom number and date formats in <code>I18n.load()</code>:</p>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">await I18n.load({
+  locale: 'de',
+  messages: { ... },
+  numberFormats: {
+    currency: { style: 'currency', currency: 'EUR' },
+  },
+  dateFormats: {
+    short: { day: '2-digit', month: '2-digit', year: 'numeric' },
+    long:  { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' },
+  },
+})</code></pre>
+      </article>
+    </div>
+  </t>
+</templates>

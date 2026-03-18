@@ -1,0 +1,87 @@
+<templates>
+  <t t-name="OdooService">
+    <div class="p-8">
+      <article>
+        <h1 style="font-size: 2.25rem; font-weight: 700; color: var(--doc-heading-color); margin-bottom: 16px;">Odoo JSON-RPC Service</h1>
+        <p style="font-size: 1.125rem; color: var(--doc-text-color); margin-bottom: 32px;">
+          MetaOWL ships a full-featured JSON-RPC client for connecting to Odoo backends — including authentication, session management, and CRUD operations.
+        </p>
+
+        <h2 id="configuration" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Configuration</h2>
+        <p style="color: var(--doc-text-color); margin-bottom: 16px;">Call <code>OdooService.configure()</code> once before <code>boot()</code>:</p>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { OdooService } from 'metaowl'
+
+OdooService.configure({
+  baseUrl:  'https://my-odoo.example.com',
+  database: 'my_database',
+  username: 'admin',
+  password: 'admin',          // or use apiKey
+  persistSession: true,       // default: true
+})</code></pre>
+
+        <h2 id="authentication" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Authentication</h2>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">// Authenticate and get session
+const session = await OdooService.authenticate()
+console.log(`Logged in as ${session.name}`)
+
+// Check authentication status
+if (OdooService.isAuthenticated()) {
+  console.log('User:', OdooService.getSession().name)
+}
+
+// Logout
+OdooService.logout()
+
+// Subscribe to auth changes
+const unsubscribe = OdooService.onAuthChange((session) => {
+  console.log(session ? 'Logged in' : 'Logged out')
+})</code></pre>
+
+        <h2 id="search-read" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Search &amp; Read</h2>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">const partners = await OdooService.searchRead('res.partner', {
+  domain: [['is_company', '=', true]],
+  fields: ['name', 'email', 'phone'],
+  limit: 10,
+  offset: 0,
+  order: 'name asc',
+})</code></pre>
+
+        <h2 id="crud" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">CRUD Operations</h2>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">// Create
+const id = await OdooService.create('res.partner', {
+  name: 'New Partner',
+  email: 'partner@example.com',
+})
+
+// Read specific records
+const records = await OdooService.read('res.partner', [id], ['name', 'email'])
+
+// Update
+await OdooService.write('res.partner', [id], { name: 'Updated Name' })
+
+// Delete
+await OdooService.unlink('res.partner', [id])
+
+// Count matching records
+const total = await OdooService.searchCount('res.partner', [['is_company', '=', true]])</code></pre>
+
+        <h2 id="custom-methods" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Custom Model Methods</h2>
+        <p style="color: var(--doc-text-color); margin-bottom: 16px;">Call any method on any Odoo model using <code>OdooService.call()</code>:</p>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">await OdooService.call(
+  'res.partner',      // model
+  'action_archive',   // method
+  [[id]],             // positional args
+  {}                  // keyword args
+)</code></pre>
+
+        <h2 id="utility-methods" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Utility Methods</h2>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">// List available databases
+const databases = await OdooService.listDatabases()
+
+// Get server version info
+const version = await OdooService.versionInfo()
+console.log(version.server_version)  // e.g. "17.0"</code></pre>
+      </article>
+    </div>
+  </t>
+</templates>

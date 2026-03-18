@@ -15,6 +15,12 @@ export const Sidebar = class Sidebar extends Component {
       { href: '/docs/fetch', label: 'Fetch API' },
       { href: '/docs/meta', label: 'Meta Tags' },
       { href: '/docs/navigation-guards', label: 'Navigation Guards' },
+      { href: '/docs/layouts', label: 'Layouts' },
+      { href: '/docs/error-boundaries', label: 'Error Boundaries' },
+      { href: '/docs/i18n', label: 'i18n / Internationalization' },
+      { href: '/docs/forms', label: 'Form Handling' },
+      { href: '/docs/odoo-service', label: 'Odoo JSON-RPC Service' },
+      { href: '/docs/composables', label: 'Composables / Hooks' },
       { href: '/docs/api-reference', label: 'API Reference' },
       {
         href: 'https://github.com/odoo/owl',

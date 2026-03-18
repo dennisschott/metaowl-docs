@@ -60,7 +60,7 @@
 .not-found-btn-secondary {
   display: inline-block;
   padding: 0.625rem 1.25rem;
-  background: var(--doc-inline-code-bg, #f3f4f6);
+  background: #374151;
   color: var(--doc-heading-color, #1f2937);
   border-radius: 0.5rem;
   font-weight: 500;
@@ -69,5 +69,5 @@
 }
 
 .not-found-btn-secondary:hover {
-  background: #e5e7eb;
+  background: #2e3745;
 }

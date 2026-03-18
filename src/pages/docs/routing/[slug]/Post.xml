@@ -1,0 +1,39 @@
+<templates>
+    <t t-name="Post">
+        <div class="p-8">
+            <article>
+                <div style="margin-bottom: 24px;">
+                    <a href="/docs/routing" style="color: var(--doc-text-color, #6b7280); font-size: 0.875rem; text-decoration: none;">← Back to Routing</a>
+                </div>
+                <h1 style="font-size: 2.25rem; font-weight: 700; color: var(--doc-heading-color); margin-bottom: 16px;">Dynamic Route Demo</h1>
+                <p style="font-size: 1.125rem; color: var(--doc-text-color); margin-bottom: 32px;">
+                    This page is rendered by <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">pages/docs/routing/[slug]/Post.js</code>
+                    and matches the URL pattern <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">/docs/routing/:slug</code>.
+                </p>
+
+                <div style="background: var(--doc-inline-code-bg, #f3f4f6); border: 1px solid var(--doc-border-color, #e5e7eb); border-radius: 8px; padding: 20px; margin-bottom: 32px;">
+                    <p style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--doc-text-color, #6b7280); margin-bottom: 8px;">Current slug parameter</p>
+                    <p style="font-size: 1.5rem; font-weight: 700; color: var(--doc-heading-color); margin: 0;" t-esc="slug"/>
+                </div>
+
+                <h2 style="font-size: 1.25rem; font-weight: 600; color: var(--doc-heading-color); margin-bottom: 12px;">How it works</h2>
+                <p style="color: var(--doc-text-color); margin-bottom: 16px;">The slug is read via <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">getCurrentRoute()</code> in <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">setup()</code>:</p>
+                <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { getCurrentRoute } from 'metaowl'
+
+export default class Post extends Component {
+  setup() {
+    const route = getCurrentRoute()
+    this.slug = route?.params?.slug
+  }
+}</code></pre>
+
+                <h2 style="font-size: 1.25rem; font-weight: 600; color: var(--doc-heading-color); margin-bottom: 12px;">Try other slugs</h2>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                    <a href="/docs/routing/hello-world" style="padding: 6px 12px; background: var(--doc-inline-code-bg); border-radius: 6px; font-size: 0.875rem; text-decoration: none; color: var(--doc-heading-color);">hello-world</a>
+                    <a href="/docs/routing/dynamic-routing" style="padding: 6px 12px; background: var(--doc-inline-code-bg); border-radius: 6px; font-size: 0.875rem; text-decoration: none; color: var(--doc-heading-color);">dynamic-routing</a>
+                    <a href="/docs/routing/my-custom-slug" style="padding: 6px 12px; background: var(--doc-inline-code-bg); border-radius: 6px; font-size: 0.875rem; text-decoration: none; color: var(--doc-heading-color);">my-custom-slug</a>
+                </div>
+            </article>
+        </div>
+    </t>
+</templates>

@@ -1,7 +1,7 @@
 <templates>
   <t t-name="Components">
     <div style="max-width: 896px; margin: 0 auto; padding: 32px;">
-      <article style="max-width: 65ch;">
+      <article>
         <h1 style="font-size: 2.25rem; font-weight: 700; color: var(--doc-heading-color); margin-bottom: 16px;">
           Components</h1>
         <p style="font-size: 1.125rem; color: var(--doc-text-color); margin-bottom: 32px;">

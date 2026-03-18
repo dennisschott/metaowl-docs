@@ -1,7 +1,7 @@
 <templates>
   <t t-name="Routing">
     <div style="max-width: 896px; margin: 0 auto; padding: 32px;">
-      <article style="max-width: 65ch;">
+      <article>
         <h1 style="font-size: 2.25rem; font-weight: 700; color: var(--doc-heading-color); margin-bottom: 16px;">Routing</h1>
         <p style="font-size: 1.125rem; color: var(--doc-text-color); margin-bottom: 32px;">
           MetaOWL uses file-based routing. The directory structure in <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">pages/</code> directly maps to URL routes.

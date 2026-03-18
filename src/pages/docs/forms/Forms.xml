@@ -9,7 +9,7 @@
 
         <h2 id="basic-form" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Basic Form</h2>
         <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { Component } from '@odoo/owl'
-import { useForm, validators, Fetch } from 'metaowl'
+import { useForm, validators, Fetch, router } from 'metaowl'
 
 export default class LoginPage extends Component {
   static template = 'LoginPage'
@@ -22,7 +22,7 @@ export default class LoginPage extends Component {
 
     this.submitHandler = this.form.handleSubmit(async (values) => {
       await Fetch.url('/api/login', 'POST', values)
-      this.env.router.navigate('/dashboard')
+      router.push('/dashboard')
     })
   }
 }</code></pre>

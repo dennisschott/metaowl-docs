@@ -8,9 +8,7 @@ export default class Forms extends Component {
   setup() {
     if (Meta) {
       Meta.title('Form Handling - MetaOWL')
-      Meta.description(
-        'Build validated forms with useForm() in MetaOWL.',
-      )
+      Meta.description('Build validated forms with useForm() in MetaOWL.')
     }
 
     // Initialize form with all possible features
@@ -48,7 +46,7 @@ export default class Forms extends Component {
       console.log('Form errors:', this.form.errors)
 
       // Simulate async submission
-      await new Promise(resolve => setTimeout(resolve, 500))
+      await new Promise((resolve) => setTimeout(resolve, 500))
 
       alert(`Form submitted!\nName: ${values.name}\nEmail: ${values.email}`)
     })
@@ -89,7 +87,11 @@ export default class Forms extends Component {
 
     this.getErrorsJson = () => {
       const { name, email } = this.errors
-      return JSON.stringify({ name: name ?? null, email: email ?? null }, null, 2)
+      return JSON.stringify(
+        { name: name ?? null, email: email ?? null },
+        null,
+        2,
+      )
     }
   }
 }

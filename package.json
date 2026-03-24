@@ -9,7 +9,7 @@
     "lint": "metaowl-lint"
   },
   "dependencies": {
-    "metaowl": "^0.3.5",
+    "metaowl": "^0.4.0",
     "prismjs": "^1.30.0"
   },
   "devDependencies": {

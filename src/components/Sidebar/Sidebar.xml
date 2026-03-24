@@ -7,18 +7,17 @@
             <nav class="p-4">
                 <ul class="space-y-1">
                     <li t-foreach="links" t-as="link" t-key="link.href">
-                        <a
-                            t-att-href="link.href"
-                            t-att-target="link.external ? '_blank' : undefined"
+                        <Link
+                            to="link.href"
+                            target="link.external ? '_blank' : undefined"
                             t-on-click="props.onClose"
-                            class="block px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center justify-between"
-                            t-att-class="isActive(link.href) ? 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white' : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white'"
+                            class="'block px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center justify-between' + (isActive(link.href) ? ' bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white' : ' text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white')"
                         >
                             <span t-esc="link.label" />
                             <t t-if="link.external">
                                 <ion-icon name="open-outline" class="text-sm"></ion-icon>
                             </t>
-                        </a>
+                        </Link>
                     </li>
                 </ul>
             </nav>

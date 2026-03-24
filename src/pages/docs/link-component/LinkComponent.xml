@@ -1,0 +1,189 @@
+<templates>
+  <t t-name="LinkComponent">
+    <div class="p-8">
+      <article>
+        <h1 style="font-size: 2.25rem; font-weight: 700; color: var(--doc-heading-color); margin-bottom: 16px;">Link Component</h1>
+        <p style="font-size: 1.125rem; color: var(--doc-text-color); margin-bottom: 32px;">
+          The <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">Link</code> component provides SPA-style navigation without page reloads. It renders a standard <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">&lt;a&gt;</code> element and automatically handles internal navigation via <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">history.pushState</code>, while allowing normal browser behavior for external links.
+        </p>
+
+        <h2 id="setup" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Setup</h2>
+        <p style="color: var(--doc-text-color); margin-bottom: 16px;">
+          Import <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">Link</code> from <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">metaowl</code> and register it in your component's <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">static components</code>:
+        </p>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { Component } from '@odoo/owl'
+import { Link } from 'metaowl'
+
+export class MyNav extends Component {
+  static template = 'MyNav'
+  static components = { Link }
+
+  setup() {
+    this.linkClass = (href) =&gt; {
+      const base = 'block px-3 py-2 rounded-md text-sm'
+      const active = 'bg-gray-100 text-gray-900'
+      const inactive = 'text-gray-600 hover:bg-gray-100'
+      const isActive = window.location.pathname === href
+      return base + ' ' + (isActive ? active : inactive)
+    }
+  }
+}</code></pre>
+
+        <h2 id="basic-usage" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Basic Usage</h2>
+        <p style="color: var(--doc-text-color); margin-bottom: 16px;">
+          Prop values are OWL expressions — wrap static strings in extra quotes, or pass method calls:
+        </p>
+        <pre class="language-xml" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-xml">&lt;!-- Internal link --&gt;
+&lt;Link to="'/about'"&gt;About Us&lt;/Link&gt;
+
+&lt;!-- Dynamic target from loop --&gt;
+&lt;Link to="item.href"&gt;&lt;t t-esc="item.label"/&gt;&lt;/Link&gt;
+
+&lt;!-- Computed class via method --&gt;
+&lt;Link to="item.href" class="linkClass(item.href)"&gt;
+  &lt;t t-esc="item.label"/&gt;
+&lt;/Link&gt;
+
+&lt;!-- External link - opens normally (auto-detected, no SPA) --&gt;
+&lt;Link to="'https://github.com/odoo/owl'" target="'_blank'"&gt;
+  OWL Framework
+&lt;/Link&gt;
+
+&lt;!-- External with dynamic target, closing sidebar on click --&gt;
+&lt;Link
+  to="link.href"
+  target="link.external ? '_blank' : undefined"
+  t-on-click="props.onClose"
+  class="linkClass(link.href)"
+  activeClass="'text-yellow-500'"
+&gt;
+  &lt;span t-esc="link.label"/&gt;
+&lt;/Link&gt;</code></pre>
+
+        <h2 id="props" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Props</h2>
+        <p style="color: var(--doc-text-color); margin-bottom: 16px;">
+          Any additional attribute (<code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">id</code>, <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">style</code>, <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">aria-*</code>, <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">data-*</code>, etc.) is forwarded directly to the rendered <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">&lt;a&gt;</code> element.
+        </p>
+        <div style="overflow-x: auto; margin-bottom: 24px;">
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.875rem;">
+            <thead>
+              <tr style="border-bottom: 2px solid var(--doc-border-color, #e5e7eb);">
+                <th style="text-align: left; padding: 10px 16px; color: var(--doc-heading-color); font-weight: 600;">Prop</th>
+                <th style="text-align: left; padding: 10px 16px; color: var(--doc-heading-color); font-weight: 600;">Type</th>
+                <th style="text-align: left; padding: 10px 16px; color: var(--doc-heading-color); font-weight: 600;">Required</th>
+                <th style="text-align: left; padding: 10px 16px; color: var(--doc-heading-color); font-weight: 600;">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid var(--doc-border-color, #e5e7eb);">
+                <td style="padding: 10px 16px;"><code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">to</code></td>
+                <td style="padding: 10px 16px; color: var(--doc-text-color);"><code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">string</code></td>
+                <td style="padding: 10px 16px; color: var(--doc-text-color);">Yes</td>
+                <td style="padding: 10px 16px; color: var(--doc-text-color);">Target URL (internal path or external URL)</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--doc-border-color, #e5e7eb);">
+                <td style="padding: 10px 16px;"><code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">class</code></td>
+                <td style="padding: 10px 16px; color: var(--doc-text-color);"><code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">string</code></td>
+                <td style="padding: 10px 16px; color: var(--doc-text-color);">No</td>
+                <td style="padding: 10px 16px; color: var(--doc-text-color);">CSS classes for the anchor element</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--doc-border-color, #e5e7eb);">
+                <td style="padding: 10px 16px;"><code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">activeClass</code></td>
+                <td style="padding: 10px 16px; color: var(--doc-text-color);"><code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">string</code></td>
+                <td style="padding: 10px 16px; color: var(--doc-text-color);">No</td>
+                <td style="padding: 10px 16px; color: var(--doc-text-color);">Extra CSS classes added when the link is active (current route matches <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">to</code>)</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--doc-border-color, #e5e7eb);">
+                <td style="padding: 10px 16px;"><code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">target</code></td>
+                <td style="padding: 10px 16px; color: var(--doc-text-color);"><code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">string</code></td>
+                <td style="padding: 10px 16px; color: var(--doc-text-color);">No</td>
+                <td style="padding: 10px 16px; color: var(--doc-text-color);">Target window (<code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">_blank</code>, <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">_self</code>, etc.)</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--doc-border-color, #e5e7eb);">
+                <td style="padding: 10px 16px;"><code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">rel</code></td>
+                <td style="padding: 10px 16px; color: var(--doc-text-color);"><code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">string</code></td>
+                <td style="padding: 10px 16px; color: var(--doc-text-color);">No</td>
+                <td style="padding: 10px 16px; color: var(--doc-text-color);">Relationship attribute (auto-set to <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">noopener noreferrer</code> for external <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">_blank</code> links)</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--doc-border-color, #e5e7eb);">
+                <td style="padding: 10px 16px;"><code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">download</code></td>
+                <td style="padding: 10px 16px; color: var(--doc-text-color);"><code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">string | boolean</code></td>
+                <td style="padding: 10px 16px; color: var(--doc-text-color);">No</td>
+                <td style="padding: 10px 16px; color: var(--doc-text-color);">Download attribute for file downloads</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--doc-border-color, #e5e7eb);">
+                <td style="padding: 10px 16px;"><code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">hreflang</code></td>
+                <td style="padding: 10px 16px; color: var(--doc-text-color);"><code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">string</code></td>
+                <td style="padding: 10px 16px; color: var(--doc-text-color);">No</td>
+                <td style="padding: 10px 16px; color: var(--doc-text-color);">Language of the linked resource</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--doc-border-color, #e5e7eb);">
+                <td style="padding: 10px 16px;"><code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">type</code></td>
+                <td style="padding: 10px 16px; color: var(--doc-text-color);"><code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">string</code></td>
+                <td style="padding: 10px 16px; color: var(--doc-text-color);">No</td>
+                <td style="padding: 10px 16px; color: var(--doc-text-color);">MIME type hint</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--doc-border-color, #e5e7eb);">
+                <td style="padding: 10px 16px;"><code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">ping</code></td>
+                <td style="padding: 10px 16px; color: var(--doc-text-color);"><code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">string</code></td>
+                <td style="padding: 10px 16px; color: var(--doc-text-color);">No</td>
+                <td style="padding: 10px 16px; color: var(--doc-text-color);">Space-separated URLs to ping on click</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--doc-border-color, #e5e7eb);">
+                <td style="padding: 10px 16px;"><code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">referrerpolicy</code></td>
+                <td style="padding: 10px 16px; color: var(--doc-text-color);"><code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">string</code></td>
+                <td style="padding: 10px 16px; color: var(--doc-text-color);">No</td>
+                <td style="padding: 10px 16px; color: var(--doc-text-color);">Referrer policy override</td>
+              </tr>
+              <tr>
+                <td style="padding: 10px 16px;"><code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">media</code></td>
+                <td style="padding: 10px 16px; color: var(--doc-text-color);"><code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">string</code></td>
+                <td style="padding: 10px 16px; color: var(--doc-text-color);">No</td>
+                <td style="padding: 10px 16px; color: var(--doc-text-color);">Media query hint</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="external-link-detection" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">External Link Detection</h2>
+        <p style="color: var(--doc-text-color); margin-bottom: 16px;">
+          The component automatically detects external links and performs normal navigation. URLs starting with <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">https://</code> or <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">http://</code>, as well as special protocols like <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">mailto:</code>, <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">tel:</code>, and <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">ftp:</code> are treated as external and bypass the SPA router.
+        </p>
+        <pre class="language-xml" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-xml">&lt;!-- These are automatically treated as external --&gt;
+&lt;Link to="'https://example.com'"&gt;External site&lt;/Link&gt;
+&lt;Link to="'mailto:hello@example.com'"&gt;Send email&lt;/Link&gt;
+&lt;Link to="'tel:+1234567890'"&gt;Call us&lt;/Link&gt;
+
+&lt;!-- Internal links use SPA navigation --&gt;
+&lt;Link to="'/about'"&gt;About Us&lt;/Link&gt;
+&lt;Link to="'/docs/getting-started'"&gt;Getting Started&lt;/Link&gt;</code></pre>
+
+        <h2 id="programmatic-navigation" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Programmatic Navigation</h2>
+        <p style="color: var(--doc-text-color); margin-bottom: 16px;">
+          Use <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">navigateTo()</code> for programmatic navigation in JavaScript:
+        </p>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { navigateTo } from 'metaowl'
+
+// Navigate to a new route
+await navigateTo('/dashboard')
+
+// Replace current history entry (no back button)
+await navigateTo('/login', { replace: true })</code></pre>
+
+        <h2 id="router-api" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Router API</h2>
+        <p style="color: var(--doc-text-color); margin-bottom: 16px;">
+          You can also use the <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">router</code> object directly for more control:
+        </p>
+        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { router, navigateTo } from 'metaowl'
+
+// Navigation
+router.push('/path')           // Navigate to path
+router.replace('/path')        // Replace current history entry
+router.navigateTo('/path')     // SPA navigation
+router.back()                  // Go back
+router.forward()               // Go forward
+router.go(-2)                  // Go 2 steps back</code></pre>
+      </article>
+    </div>
+  </t>
+</templates>

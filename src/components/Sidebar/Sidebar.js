@@ -1,7 +1,9 @@
 import { Component } from '@odoo/owl'
+import { Link } from 'metaowl'
 
 export const Sidebar = class Sidebar extends Component {
   static template = 'Sidebar'
+  static components = { Link }
   static props = ['isOpen', 'onClose']
 
   setup() {
@@ -10,6 +12,7 @@ export const Sidebar = class Sidebar extends Component {
       { href: '/docs/getting-started', label: 'Getting Started' },
       { href: '/docs/project-structure', label: 'Project Structure' },
       { href: '/docs/routing', label: 'Routing' },
+      { href: '/docs/link-component', label: 'Link Component' },
       { href: '/docs/components', label: 'Components' },
       { href: '/docs/store', label: 'Store' },
       { href: '/docs/fetch', label: 'Fetch API' },

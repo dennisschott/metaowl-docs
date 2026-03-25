@@ -9,10 +9,10 @@
         MetaOWL is a meta-framework for Odoo OWL on Vite. Build powerful, reactive web applications with file-based routing, state management, and SEO optimization.
       </p>
       <div class="flex flex-col sm:flex-row justify-center gap-4">
-        <Link to="/docs/getting-started" class="px-6 py-3 bg-blue-600 text-white rounded-lg font-medium no-underline hover:bg-blue-700 transition-colors">
+        <Link to="'/docs/getting-started/'" class="'px-6 py-3 bg-blue-600 text-white rounded-lg font-medium no-underline hover:bg-blue-700 transition-colors'">
           Get Started
         </Link>
-        <Link to="https://www.npmjs.com/package/metaowl" target="_blank" class="px-6 py-3 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg font-medium no-underline hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+        <Link to="'https://www.npmjs.com/package/metaowl'" target="_blank" class="'px-6 py-3 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg font-medium no-underline hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors'">
           View on npm
         </Link>
       </div>

@@ -1,9 +1,9 @@
 import { Component } from '@odoo/owl'
-import { Meta } from 'metaowl'
+import { Meta, Link } from 'metaowl'
 
 export default class Index extends Component {
   static template = 'Index'
-  static components = {}
+  static components = { Link }
 
   setup() {
     Meta.title('MetaOWL - The Meta-Framework for Odoo OWL')

@@ -80,6 +80,50 @@ const Layout = getLayout('admin')</code></pre>
   static template = 'LoginPage'
   static layout = false   // full-screen, no layout
 }</code></pre>
+
+        <h2 id="nested-layouts" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">Nested Layouts</h2>
+        <p class="mb-4 text-[var(--doc-text-color)]">Create parent-child layout hierarchies where layouts wrap other layouts, forming a chain from outermost to innermost.</p>
+
+        <h3 id="setparentlayout" class="text-lg font-semibold mt-6 mb-3 text-[var(--doc-heading-color)]">setParentLayout() / getParentLayout()</h3>
+        <p class="mb-4 text-[var(--doc-text-color)]">Establish a parent relationship between layouts:</p>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { setParentLayout, getParentLayout, registerLayout } from 'metaowl'
+
+registerLayout('blog', BlogLayout)
+registerLayout('post', PostLayout)
+
+// Set blog as parent of post
+setParentLayout('post', 'blog')
+
+// Returns 'blog'
+getParentLayout('post')</code></pre>
+
+        <h3 id="getlayoutchain" class="text-lg font-semibold mt-6 mb-3 text-[var(--doc-heading-color)]">getLayoutChain()</h3>
+        <p class="mb-4 text-[var(--doc-text-color)]">Returns the full hierarchy chain from a layout to its root ancestor. Detects circular references:</p>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { getLayoutChain, setParentLayout } from 'metaowl'
+
+setParentLayout('post', 'blog')
+setParentLayout('blog', 'default')
+
+// Returns ['post', 'blog', 'default']
+getLayoutChain('post')</code></pre>
+
+        <h3 id="createnestedlayoutwrapper" class="text-lg font-semibold mt-6 mb-3 text-[var(--doc-heading-color)]">createNestedLayoutWrapper()</h3>
+        <p class="mb-4 text-[var(--doc-text-color)]">Programmatically create a wrapper component that nests multiple layouts:</p>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { createNestedLayoutWrapper, getLayout } from 'metaowl'
+
+const layouts = [getLayout('default'), getLayout('blog'), getLayout('post')]
+const page = MyPageComponent
+
+const Wrapper = createNestedLayoutWrapper(layouts, page, { customProp: 'value' })</code></pre>
+
+        <h3 id="definenestedlayout-decorator" class="text-lg font-semibold mt-6 mb-3 text-[var(--doc-heading-color)]">defineNestedLayout() Decorator</h3>
+        <p class="mb-4 text-[var(--doc-text-color)]">Decorator that combines layout assignment and parent relationship in one step:</p>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { defineNestedLayout } from 'metaowl'
+
+@defineNestedLayout('post', 'blog', { theme: 'light' })
+export default class PostLayout extends Component {
+  static template = 'PostLayout'
+}</code></pre>
       </article>
     </div>
   </t>

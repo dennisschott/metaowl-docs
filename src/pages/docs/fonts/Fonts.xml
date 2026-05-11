@@ -1,0 +1,116 @@
+<Templates>
+  <t t-name="Fonts">
+    <div class="p-8">
+      <article>
+        <h1 class="text-4xl font-bold mb-4 text-[var(--doc-heading-color)]">Fonts</h1>
+        <p class="text-lg mb-8 text-[var(--doc-text-color)]">
+          Font optimization utilities for loading, preloading, and optimizing font display.
+        </p>
+
+        <h2 id="definefontface" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">defineFontFace()</h2>
+        <p class="mb-4 text-[var(--doc-text-color)]">Creates a FontFace object for a custom font:</p>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { defineFontFace } from 'metaowl'
+
+const fontFace = defineFontFace({
+  family: 'MyFont',
+  src: '/fonts/MyFont.woff2',
+  weight: 'normal',
+  style: 'normal',
+  display: 'swap',
+  unicodeRange: 'U+0-FFFF'
+})</code></pre>
+
+        <h2 id="loadfont" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">loadFont() / loadFontFamily()</h2>
+        <p class="mb-4 text-[var(--doc-text-color)]">Asynchronously loads fonts and adds them to the document font cache:</p>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { loadFont, loadFontFamily } from 'metaowl'
+
+// Single font
+await loadFont({
+  family: 'MyFont',
+  src: '/fonts/MyFont.woff2',
+  weight: 'normal',
+  display: 'swap'
+})
+
+// Entire font family with multiple variants
+await loadFontFamily('MyFont', [
+  { src: '/fonts/MyFont-Regular.woff2', weight: 'normal' },
+  { src: '/fonts/MyFont-Bold.woff2', weight: 'bold' },
+  { src: '/fonts/MyFont-Italic.woff2', weight: 'normal', style: 'italic' }
+])</code></pre>
+
+        <h2 id="isfontloaded" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">isFontLoaded()</h2>
+        <p class="mb-4 text-[var(--doc-text-color)]">Checks if a font or specific weight has been loaded:</p>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { isFontLoaded, loadFont } from 'metaowl'
+
+await loadFont({ family: 'MyFont', src: '/fonts/MyFont.woff2', weight: 'normal' })
+
+isFontLoaded('MyFont')        // true
+isFontLoaded('MyFont', 'bold')  // false</code></pre>
+
+        <h2 id="preloadfont" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">preloadFont() / removeFontPreload()</h2>
+        <p class="mb-4 text-[var(--doc-text-color)]">Manages font preloading via link elements for faster initial load:</p>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { preloadFont, removeFontPreload } from 'metaowl'
+
+// Preload a font
+preloadFont('MyFont', '/fonts/MyFont.woff2', {
+  weight: 'normal',
+  type: 'font/woff2'
+})
+
+// Remove preload when no longer needed
+removeFontPreload('MyFont', 'normal')</code></pre>
+
+        <h2 id="injectfontfacerules" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">injectFontFaceRules()</h2>
+        <p class="mb-4 text-[var(--doc-text-color)]">Injects CSS @font-face rules directly into the document head:</p>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { injectFontFaceRules } from 'metaowl'
+
+injectFontFaceRules({
+  family: 'MyFont',
+  src: '/fonts/MyFont.woff2',
+  weight: 'normal',
+  display: 'swap'
+})
+
+// Or multiple at once
+injectFontFaceRules([
+  { family: 'MyFont', src: '/fonts/MyFont-Regular.woff2', weight: 'normal' },
+  { family: 'MyFont', src: '/fonts/MyFont-Bold.woff2', weight: 'bold' }
+])</code></pre>
+
+        <h2 id="measuretextwidth" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">measureTextWidth()</h2>
+        <p class="mb-4 text-[var(--doc-text-color)]">Measures the width of text in a given font using canvas:</p>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { measureTextWidth } from 'metaowl'
+
+const width = measureTextWidth('Hello World', 'MyFont', 16)
+// Returns: ~93.5 (pixels)</code></pre>
+
+        <h2 id="adjustfontforfout" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">adjustFontForFout()</h2>
+        <p class="mb-4 text-[var(--doc-text-color)]">Handles Flash of Unstyled Text (FOUT) by managing font-display and classes:</p>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { adjustFontForFout } from 'metaowl'
+
+const el = document.querySelector('.text-with-custom-font')
+
+await adjustFontForFout(el, 'sans-serif', 3000)
+// Adds 'metaowl-font-loaded' when font is ready
+// Adds 'metaowl-font-fout' after timeout as fallback</code></pre>
+
+        <h2 id="fonts-api" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">Fonts</h2>
+        <p class="mb-4 text-[var(--doc-text-color)]">Composite API that provides all font utilities under one namespace:</p>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { Fonts } from 'metaowl'
+
+Fonts.defineFontFace()
+Fonts.loadFont()
+Fonts.loadFontFamily()
+Fonts.isFontLoaded()
+Fonts.preloadFont()
+Fonts.removeFontPreload()
+Fonts.injectFontFaceRules()
+Fonts.measureTextWidth()
+Fonts.adjustFontForFout()
+Fonts.getFontLoadStatus()
+Fonts.clearLoadedFonts()</code></pre>
+      </article>
+    </div>
+  </t>
+</Templates>

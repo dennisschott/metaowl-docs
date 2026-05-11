@@ -1,0 +1,33 @@
+<Templates>
+  <t t-name="Image">
+    <div class="p-8">
+      <article>
+        <h1 class="text-4xl font-bold mb-4 text-[var(--doc-heading-color)]">Image</h1>
+        <h2 id="image-api" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">Image API</h2>
+        <p class="mb-4 text-[var(--doc-text-color)]">Composite API that provides all image utilities under one namespace:</p>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { Image as ImageAPI } from 'metaowl'
+
+await ImageAPI.getImageDimensions(
+  'https://picsum.photos/800/600',
+)
+// {width: 800, height: 600}
+
+await ImageAPI.calculateAspectRatio(
+  result.width,
+  result.height,
+)
+// 4/3
+
+ImageAPI.generateSrcSet,
+ImageAPI.generateSizesAttribute,
+ImageAPI.createResponsiveImage,
+ImageAPI.prefetchImage,
+ImageAPI.prefetchImages,
+ImageAPI.isImageLoaded,
+ImageAPI.observeImageVisibility,
+ImageAPI.swapImageSource,
+ImageAPI.generateDominantColorPlaceholder</code></pre>
+      </article>
+    </div>
+  </t>
+</Templates>

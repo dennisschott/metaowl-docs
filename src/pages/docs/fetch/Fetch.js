@@ -20,7 +20,9 @@ export default class Fetch extends Component {
 
   async fetchUsers() {
     try {
-      this.state.users = await FetchAPI.url('https://jsonplaceholder.typicode.com/users')
+      this.state.users = await FetchAPI.url(
+        'https://jsonplaceholder.typicode.com/users',
+      )
     } catch (e) {
       this.state.error = e?.message || 'Failed to load'
     } finally {

@@ -19,6 +19,8 @@ export const Sidebar = class Sidebar extends Component {
       { href: '/docs/meta/', label: 'Meta Tags' },
       { href: '/docs/navigation-guards/', label: 'Navigation Guards' },
       { href: '/docs/layouts/', label: 'Layouts' },
+      { href: '/docs/image/', label: 'Image' },
+      { href: '/docs/fonts/', label: 'Fonts' },
       { href: '/docs/error-boundaries/', label: 'Error Boundaries' },
       { href: '/docs/i18n/', label: 'i18n / Internationalization' },
       { href: '/docs/forms/', label: 'Form Handling' },

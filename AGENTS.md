@@ -140,6 +140,7 @@ Meta.og('og:title', 'Open Graph Title')
 - Do not use React/Vue patterns
 - Do not use `onclick` (use `t-on-click`)
 - Do not import from `react` or `vue`
+- **In XML code blocks, escape special characters**: use `&amp;` for `&`, `&lt;` for `<`, `&gt;` for `>`, `&amp;&amp;` for `&&`, etc. XML entities must be escaped inside `<code>` or `<pre>` blocks.
 
 ## Best Practices Resources
 

@@ -1,7 +1,9 @@
 import { Component, useState } from '@odoo/owl'
+import { Link } from 'metaowl'
 
 export const AppHeader = class AppHeader extends Component {
   static template = 'AppHeader'
+  static components = { Link }
 
   setup() {
     this.state = useState({

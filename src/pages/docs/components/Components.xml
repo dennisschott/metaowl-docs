@@ -2,20 +2,19 @@
   <t t-name="Components">
     <div class="p-8">
       <article>
-        <h1 style="font-size: 2.25rem; font-weight: 700; color: var(--doc-heading-color); margin-bottom: 16px;">
+        <h1 class="text-4xl font-bold mb-4 text-[var(--doc-heading-color)]">
           Components</h1>
-        <p style="font-size: 1.125rem; color: var(--doc-text-color); margin-bottom: 32px;">
+        <p class="text-lg mb-8 text-[var(--doc-text-color)]">
           MetaOWL uses OWL (Odoo Web Library) components for building your UI.
         </p>
 
         <h2 id="creating-components"
-          style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Creating
+          class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">Creating
           Components</h2>
-        <p style="color: var(--doc-text-color); margin-bottom: 16px;">Create components in the <code
-            style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">
+        <p class="mb-4 text-[var(--doc-text-color)]">Create components in the <code
+            class="px-1.5 py-0.5 rounded text-sm bg-[var(--doc-inline-code-bg)]">
           src/components/</code> directory:</p>
-        <pre class="language-javascript"
-          style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">// src/components/Button/Button.js
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">// src/components/Button/Button.js
 import { Component } from '@odoo/owl'
 
 export class Button extends Component {
@@ -24,12 +23,11 @@ export class Button extends Component {
 }</code></pre>
 
         <h2 id="templates"
-          style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">
+          class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">
           Templates</h2>
-        <p style="color: var(--doc-text-color); margin-bottom: 16px;">Define the component template in an XML
+        <p class="mb-4 text-[var(--doc-text-color)]">Define the component template in an XML
           file:</p>
-        <pre class="language-xml"
-          style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-xml">&lt;templates&gt;
+        <pre class="language-xml p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-xml">&lt;templates&gt;
   &lt;t t-name="Button"&gt;
     &lt;button class="btn" t-on-click="props.onClick"&gt;
       &lt;t t-esc="props.label"/&gt;
@@ -38,22 +36,22 @@ export class Button extends Component {
 &lt;/templates&gt;</code></pre>
 
         <h2 id="lifecycle"
-          style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Lifecycle
+          class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">Lifecycle
           Hooks</h2>
-        <p style="color: var(--doc-text-color); margin-bottom: 16px;">OWL provides several lifecycle hooks:</p>
-        <ul style="color: var(--doc-text-color); margin-bottom: 16px; list-style: disc; padding-left: 24px;">
-          <li style="margin-bottom: 8px;"><code
-              style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">
+        <p class="mb-4 text-[var(--doc-text-color)]">OWL provides several lifecycle hooks:</p>
+        <ul class="mb-4 text-[var(--doc-text-color)] list-disc pl-6">
+          <li class="mb-2"><code
+              class="px-1.5 py-0.5 rounded text-sm bg-[var(--doc-inline-code-bg)]">
             setup()</code> - Called before mounting</li>
-          <li style="margin-bottom: 8px;"><code
-              style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">
+          <li class="mb-2"><code
+              class="px-1.5 py-0.5 rounded text-sm bg-[var(--doc-inline-code-bg)]">
             mounted()</code> - Called after mounting</li>
-          <li style="margin-bottom: 8px;"><code
-              style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">
+          <li class="mb-2"><code
+              class="px-1.5 py-0.5 rounded text-sm bg-[var(--doc-inline-code-bg)]">
             willUnmount()</code> - Called before unmounting</li>
         </ul>
 
-        <h2 id="try-it" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Try It Yourself</h2>
+        <h2 id="try-it" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">Try It Yourself</h2>
         <!-- Interactive Example -->
         <div class="bg-gray-100 dark:bg-[#1e202e] border border-gray-300 dark:border-none rounded-lg p-6 mb-8">
           <p class="text-gray-700 dark:text-gray-300 mb-4 text-sm">This example shows a simple OWL component with props and event handling.</p>

@@ -2,16 +2,16 @@
   <t t-name="NavigationGuards">
     <div class="p-8">
       <article>
-        <h1 style="font-size: 2.25rem; font-weight: 700; color: var(--doc-heading-color); margin-bottom: 16px;">Navigation Guards</h1>
-        <p style="font-size: 1.125rem; color: var(--doc-text-color); margin-bottom: 32px;">
+        <h1 class="text-4xl font-bold mb-4 text-[var(--doc-heading-color)]">Navigation Guards</h1>
+        <p class="text-lg mb-8 text-[var(--doc-text-color)]">
           Control navigation flow with before and after guards.
         </p>
 
-        <h2 id="before-each" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Before Each Guard</h2>
-        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { beforeEach, router } from 'metaowl'
+        <h2 id="before-each" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">Before Each Guard</h2>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { beforeEach, router } from 'metaowl'
 
 // Protect routes
-beforeEach(async (to, from) =--> {
+beforeEach(async (to, from) => {
   const isAuthenticated = await checkAuth()
   
   if (!isAuthenticated and to.path !== 'login') {
@@ -19,17 +19,17 @@ beforeEach(async (to, from) =--> {
   }
 })</code></pre>
 
-        <h2 id="after-each" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">After Each Guard</h2>
-        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { afterEach } from 'metaowl'
+        <h2 id="after-each" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">After Each Guard</h2>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { afterEach } from 'metaowl'
 
-afterEach((to, from) =--> {
+afterEach((to, from) => {
   console.log('Navigated from ' + from.path + ' to ' + to.path)
 })</code></pre>
 
-        <h2 id="cancel-navigation" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Cancel Navigation</h2>
-        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { cancelNavigation } from 'metaowl'
+        <h2 id="cancel-navigation" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">Cancel Navigation</h2>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { cancelNavigation } from 'metaowl'
 
-beforeEach((to, from) =--> {
+beforeEach((to, from) => {
   if (!confirm('Leave page?')) {
     cancelNavigation()
   }

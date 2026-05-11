@@ -2,22 +2,22 @@
   <t t-name="ErrorBoundaries">
     <div class="p-8">
       <article>
-        <h1 style="font-size: 2.25rem; font-weight: 700; color: var(--doc-heading-color); margin-bottom: 16px;">Error Boundaries</h1>
-        <p style="font-size: 1.125rem; color: var(--doc-text-color); margin-bottom: 32px;">
+        <h1 class="text-4xl font-bold mb-4 text-[var(--doc-heading-color)]">Error Boundaries</h1>
+        <p class="text-lg mb-8 text-[var(--doc-text-color)]">
           Error Boundaries catch runtime errors in your component tree and render a fallback UI instead of crashing the entire app.
         </p>
 
-        <h2 id="basic-setup" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Basic Setup</h2>
-        <p style="color: var(--doc-text-color); margin-bottom: 16px;">Wrap your app with <code>ErrorBoundary.wrap()</code> before mounting:</p>
-        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { ErrorBoundary } from 'metaowl'
+        <h2 id="basic-setup" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">Basic Setup</h2>
+        <p class="mb-4 text-[var(--doc-text-color)]">Wrap your app with <code>ErrorBoundary.wrap()</code> before mounting:</p>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { ErrorBoundary } from 'metaowl'
 import AppComponent from './App.js'
 
 const errorBoundary = ErrorBoundary.wrap(AppComponent)
 errorBoundary.mount(document.body)</code></pre>
 
-        <h2 id="global-error-handler" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Global Error Handler</h2>
-        <p style="color: var(--doc-text-color); margin-bottom: 16px;">Register a global handler to log or report errors:</p>
-        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { ErrorBoundary } from 'metaowl'
+        <h2 id="global-error-handler" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">Global Error Handler</h2>
+        <p class="mb-4 text-[var(--doc-text-color)]">Register a global handler to log or report errors:</p>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { ErrorBoundary } from 'metaowl'
 
 ErrorBoundary.onError((error, context) => {
   console.error('App error:', error, context)
@@ -29,9 +29,9 @@ ErrorBoundary.onError((error, context) => {
   })
 })</code></pre>
 
-        <h2 id="error-page" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Custom Error Page</h2>
-        <p style="color: var(--doc-text-color); margin-bottom: 16px;">Create a custom error page at <code>src/pages/error.js</code> to control the fallback UI:</p>
-        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { Component } from '@odoo/owl'
+        <h2 id="error-page" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">Custom Error Page</h2>
+        <p class="mb-4 text-[var(--doc-text-color)]">Create a custom error page at <code>src/pages/error.js</code> to control the fallback UI:</p>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { Component } from '@odoo/owl'
 
 export default class ErrorPage extends Component {
   static template = 'ErrorPage'
@@ -41,7 +41,7 @@ export default class ErrorPage extends Component {
   }
 }</code></pre>
 
-        <pre class="language-xml" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-xml">&lt;!-- src/pages/error/ErrorPage.xml --&gt;
+        <pre class="language-xml p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-xml">&lt;!-- src/pages/error/ErrorPage.xml --&gt;
 &lt;templates&gt;
   &lt;t t-name="ErrorPage"&gt;
     &lt;div class="error-page"&gt;
@@ -52,33 +52,33 @@ export default class ErrorPage extends Component {
   &lt;/t&gt;
 &lt;/templates&gt;</code></pre>
 
-        <h2 id="context-object" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Error Context</h2>
-        <p style="color: var(--doc-text-color); margin-bottom: 16px;">The <code>context</code> object passed to <code>onError</code> contains the following fields:</p>
+        <h2 id="context-object" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">Error Context</h2>
+        <p class="mb-4 text-[var(--doc-text-color)]">The <code>context</code> object passed to <code>onError</code> contains the following fields:</p>
 
-        <div style="overflow-x: auto; margin-bottom: 24px;">
-          <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+        <div class="overflow-x-auto mb-6">
+          <table class="w-full border-collapse text-sm">
             <thead>
-              <tr style="border-bottom: 2px solid var(--doc-border-color);">
-                <th style="text-align: left; padding: 8px 12px; color: var(--doc-heading-color);">Property</th>
-                <th style="text-align: left; padding: 8px 12px; color: var(--doc-heading-color);">Type</th>
-                <th style="text-align: left; padding: 8px 12px; color: var(--doc-heading-color);">Description</th>
+              <tr class="border-b-2 border-[var(--doc-border-color)]">
+                <th class="text-left p-3 text-[var(--doc-heading-color)]">Property</th>
+                <th class="text-left p-3 text-[var(--doc-heading-color)]">Type</th>
+                <th class="text-left p-3 text-[var(--doc-heading-color)]">Description</th>
               </tr>
             </thead>
             <tbody>
-              <tr style="border-bottom: 1px solid var(--doc-border-color);">
-                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>route</code></td>
-                <td style="padding: 8px 12px; color: var(--doc-text-color);">string</td>
-                <td style="padding: 8px 12px; color: var(--doc-text-color);">URL path where the error occurred</td>
+              <tr class="border-b border-[var(--doc-border-color)]">
+                <td class="p-3 text-[var(--doc-text-color)]"><code>route</code></td>
+                <td class="p-3 text-[var(--doc-text-color)]">string</td>
+                <td class="p-3 text-[var(--doc-text-color)]">URL path where the error occurred</td>
               </tr>
-              <tr style="border-bottom: 1px solid var(--doc-border-color);">
-                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>component</code></td>
-                <td style="padding: 8px 12px; color: var(--doc-text-color);">string</td>
-                <td style="padding: 8px 12px; color: var(--doc-text-color);">Name of the component that threw</td>
+              <tr class="border-b border-[var(--doc-border-color)]">
+                <td class="p-3 text-[var(--doc-text-color)]"><code>component</code></td>
+                <td class="p-3 text-[var(--doc-text-color)]">string</td>
+                <td class="p-3 text-[var(--doc-text-color)]">Name of the component that threw</td>
               </tr>
               <tr>
-                <td style="padding: 8px 12px; color: var(--doc-text-color);"><code>timestamp</code></td>
-                <td style="padding: 8px 12px; color: var(--doc-text-color);">number</td>
-                <td style="padding: 8px 12px; color: var(--doc-text-color);">Unix timestamp of when the error occurred</td>
+                <td class="p-3 text-[var(--doc-text-color)]"><code>timestamp</code></td>
+                <td class="p-3 text-[var(--doc-text-color)]">number</td>
+                <td class="p-3 text-[var(--doc-text-color)]">Unix timestamp of when the error occurred</td>
               </tr>
             </tbody>
           </table>

@@ -2,47 +2,47 @@
   <t t-name="ApiReference">
     <div class="p-8">
       <article>
-        <h1 style="font-size: 2.25rem; font-weight: 700; color: var(--doc-heading-color); margin-bottom: 16px;">API Reference</h1>
-        <p style="font-size: 1.125rem; color: var(--doc-text-color); margin-bottom: 32px;">
+        <h1 class="text-4xl font-bold mb-4 text-[var(--doc-heading-color)]">API Reference</h1>
+        <p class="text-lg mb-8 text-[var(--doc-text-color)]">
           Complete reference for all MetaOWL exports and functions.
         </p>
 
-        <h2 id="boot" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">boot()</h2>
-        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { boot } from 'metaowl'
+        <h2 id="boot" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">boot()</h2>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { boot } from 'metaowl'
 
 boot() // Auto-discovers pages from src/pages/</code></pre>
 
-        <h2 id="routing" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Routing</h2>
-        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { router, navigate, push, replace, back } from 'metaowl'
+        <h2 id="routing" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">Routing</h2>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { router, navigate, push, replace, back } from 'metaowl'
 
 router.push('/path')
 router.replace('/path')
 router.back()</code></pre>
 
-        <h2 id="store" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Store</h2>
-        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { createStore, Store } from 'metaowl'
+        <h2 id="store" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">Store</h2>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { createStore, Store } from 'metaowl'
 
 const store = createStore({ state, mutations, actions })
 store.commit('mutationName', payload)
 store.dispatch('actionName', payload)</code></pre>
 
-        <h2 id="fetch" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Fetch</h2>
-        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { Fetch } from 'metaowl'
+        <h2 id="fetch" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">Fetch</h2>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { Fetch } from 'metaowl'
 
 Fetch.get(url, options)
 Fetch.post(url, data, options)
 Fetch.put(url, data, options)
 Fetch.delete(url, options)</code></pre>
 
-        <h2 id="meta" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Meta</h2>
-        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { Meta } from 'metaowl'
+        <h2 id="meta" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">Meta</h2>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { Meta } from 'metaowl'
 
 Meta.title('Page Title')
 Meta.description('Description')
 Meta.ogTitle('OG Title')</code></pre>
 
-        <h2 id="layouts" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Layouts</h2>
-        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { registerLayout, getLayout, setDefaultLayout, resolveLayout } from 'metaowl'
+        <h2 id="layouts" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">Layouts</h2>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { registerLayout, getLayout, setDefaultLayout, resolveLayout } from 'metaowl'
 
 registerLayout('admin', AdminLayout)
 setDefaultLayout('admin')
@@ -51,8 +51,8 @@ const Layout = getLayout('admin')
 // In page component
 static layout = 'admin'   // or false to disable</code></pre>
 
-        <h2 id="cache" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Cache</h2>
-        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { Cache } from 'metaowl'
+        <h2 id="cache" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">Cache</h2>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { Cache } from 'metaowl'
 
 await Cache.set('key', { foo: 'bar' })
 const value = await Cache.get('key')
@@ -60,8 +60,8 @@ await Cache.remove('key')
 await Cache.clear()
 const keys = await Cache.keys()</code></pre>
 
-        <h2 id="configure-owl" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">configureOwl()</h2>
-        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { configureOwl } from 'metaowl'
+        <h2 id="configure-owl" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">configureOwl()</h2>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { configureOwl } from 'metaowl'
 
 // Call before boot()
 configureOwl({
@@ -70,14 +70,14 @@ configureOwl({
   translatableAttributes: ['title', 'placeholder', 'label', 'alt'],
 })</code></pre>
 
-        <h2 id="build-routes" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">buildRoutes()</h2>
-        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { buildRoutes } from 'metaowl'
+        <h2 id="build-routes" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">buildRoutes()</h2>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { buildRoutes } from 'metaowl'
 
 // Converts import.meta.glob result into a route table
 const routes = buildRoutes(import.meta.glob('./pages/**/*.js', { eager: true }))</code></pre>
 
-        <h2 id="router-guards" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Router Guards</h2>
-        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { beforeEach, afterEach } from 'metaowl'
+        <h2 id="router-guards" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">Router Guards</h2>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { beforeEach, afterEach } from 'metaowl'
 
 beforeEach((to, from, next) => {
   if (to.meta.requiresAuth &amp;&amp; !isLoggedIn) {
@@ -91,8 +91,8 @@ afterEach((to, from) => {
   console.log('Navigated to', to.path)
 })</code></pre>
 
-        <h2 id="error-boundary" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">ErrorBoundary</h2>
-        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { ErrorBoundary } from 'metaowl'
+        <h2 id="error-boundary" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">ErrorBoundary</h2>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { ErrorBoundary } from 'metaowl'
 
 const app = ErrorBoundary.wrap(AppComponent)
 app.mount(document.body)
@@ -101,8 +101,8 @@ ErrorBoundary.onError((error, context) => {
   console.error(error, context)
 })</code></pre>
 
-        <h2 id="i18n" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">I18n</h2>
-        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { I18n } from 'metaowl'
+        <h2 id="i18n" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">I18n</h2>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { I18n } from 'metaowl'
 
 await I18n.load({ locale: 'de', messages: { hello: 'Hallo, {name}!' } })
 I18n.t('hello', { name: 'Max' })  // "Hallo, Max!"
@@ -111,8 +111,8 @@ I18n.d(new Date(), 'short')        // "18.03.2026"
 await I18n.setLocale('en')
 console.log(I18n.locale)           // "en"</code></pre>
 
-        <h2 id="forms" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">useForm()</h2>
-        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { useForm } from 'metaowl'
+        <h2 id="forms" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">useForm()</h2>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { useForm } from 'metaowl'
 
 const form = useForm({
   schema: {
@@ -126,8 +126,8 @@ const form = useForm({
 // form.values / form.errors / form.isSubmitting / form.isValid
 // form.submit() / form.reset() / form.validate()</code></pre>
 
-        <h2 id="odoo-service" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">OdooService</h2>
-        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { OdooService } from 'metaowl'
+        <h2 id="odoo-service" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">OdooService</h2>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { OdooService } from 'metaowl'
 
 OdooService.configure({ baseUrl, database, username, password })
 await OdooService.authenticate()
@@ -137,8 +137,8 @@ await OdooService.write('res.partner', [id], { name: 'Updated' })
 await OdooService.unlink('res.partner', [id])
 await OdooService.call('res.partner', 'action_archive', [[id]], {})</code></pre>
 
-        <h2 id="composables" style="font-size: 1.5rem; font-weight: 600; color: var(--doc-heading-color); margin-top: 32px; margin-bottom: 16px;">Composables</h2>
-        <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import {
+        <h2 id="composables" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">Composables</h2>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import {
   useAuth,
   useLocalStorage,
   useFetch,

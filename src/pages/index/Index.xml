@@ -22,21 +22,21 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
       <div class="p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
         <div class="w-12 h-12 bg-blue-100 dark:bg-blue-950 rounded-lg flex items-center justify-center mb-4">
-          <ion-icon name="flash" style="font-size: 24px; color: #60a5fa;"></ion-icon>
+          <ion-icon name="flash" class="text-4xl text-blue-400"></ion-icon>
         </div>
         <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">Lightning Fast</h3>
         <p class="text-gray-500 dark:text-gray-400">Built on Vite for instant hot module replacement.</p>
       </div>
       <div class="p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
         <div class="w-12 h-12 bg-green-100 dark:bg-green-950 rounded-lg flex items-center justify-center mb-4">
-          <ion-icon name="folder-open" style="font-size: 24px; color: #4ade80;"></ion-icon>
+          <ion-icon name="folder-open" class="text-4xl text-green-400"></ion-icon>
         </div>
         <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">File-Based Routing</h3>
         <p class="text-gray-500 dark:text-gray-400">Simple directory structure for routes.</p>
       </div>
       <div class="p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
         <div class="w-12 h-12 bg-purple-100 dark:bg-purple-950 rounded-lg flex items-center justify-center mb-4">
-          <ion-icon name="analytics" style="font-size: 24px; color: #a855f7;"></ion-icon>
+          <ion-icon name="analytics" class="text-4xl text-purple-400"></ion-icon>
         </div>
         <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">State Management</h3>
         <p class="text-gray-500 dark:text-gray-400">Built-in store with mutations and actions.</p>

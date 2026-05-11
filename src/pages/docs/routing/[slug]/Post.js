@@ -1,9 +1,9 @@
 import { Component } from '@odoo/owl'
-import { Meta, getCurrentRoute } from 'metaowl'
+import { Meta, Link, getCurrentRoute } from 'metaowl'
 
 export default class Post extends Component {
   static template = 'Post'
-  static components = {}
+  static components = { Link }
 
   setup() {
     const route = getCurrentRoute()

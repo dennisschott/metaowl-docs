@@ -2,23 +2,25 @@
     <t t-name="Post">
         <div class="p-8">
             <article>
-                <div style="margin-bottom: 24px;">
-                    <a href="/docs/routing" style="color: var(--doc-text-color, #6b7280); font-size: 0.875rem; text-decoration: none;">← Back to Routing</a>
+                <div class="mb-6">
+                    <Link to="'/docs/routing'" class="'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 text-sm no-underline'">
+                        ← Back to Routing
+                    </Link>
                 </div>
-                <h1 style="font-size: 2.25rem; font-weight: 700; color: var(--doc-heading-color); margin-bottom: 16px;">Dynamic Route Demo</h1>
-                <p style="font-size: 1.125rem; color: var(--doc-text-color); margin-bottom: 32px;">
-                    This page is rendered by <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">pages/docs/routing/[slug]/Post.js</code>
-                    and matches the URL pattern <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">/docs/routing/:slug</code>.
+                <h1 class="text-3xl md:text-4xl font-bold text-[var(--doc-heading-color)] mb-4">Dynamic Route Demo</h1>
+                <p class="text-lg text-[var(--doc-text-color)] mb-8">
+                    This page is rendered by <code class="bg-[var(--doc-inline-code-bg)] px-1.5 py-0.5 rounded text-sm">pages/docs/routing/[slug]/Post.js</code>
+                    and matches the URL pattern <code class="bg-[var(--doc-inline-code-bg)] px-1.5 py-0.5 rounded text-sm">/docs/routing/:slug</code>.
                 </p>
 
-                <div style="background: var(--doc-inline-code-bg, #f3f4f6); border: 1px solid var(--doc-border-color, #e5e7eb); border-radius: 8px; padding: 20px; margin-bottom: 32px;">
-                    <p style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--doc-text-color, #6b7280); margin-bottom: 8px;">Current slug parameter</p>
-                    <p style="font-size: 1.5rem; font-weight: 700; color: var(--doc-heading-color); margin: 0;" t-esc="slug"/>
+                <div class="bg-[var(--doc-inline-code-bg,#f3f4f6)] border border-[var(--doc-border-color,#e5e7eb)] rounded-lg p-5 mb-8">
+                    <p class="text-xs font-semibold uppercase tracking-wide text-[var(--doc-text-color,#6b7280)] mb-2">Current slug parameter</p>
+                    <p class="text-2xl font-bold text-[var(--doc-heading-color)] m-0" t-esc="slug"/>
                 </div>
 
-                <h2 style="font-size: 1.25rem; font-weight: 600; color: var(--doc-heading-color); margin-bottom: 12px;">How it works</h2>
-                <p style="color: var(--doc-text-color); margin-bottom: 16px;">The slug is read via <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">getCurrentRoute()</code> in <code style="background: var(--doc-inline-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">setup()</code>:</p>
-                <pre class="language-javascript" style="padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; margin-bottom: 24px;"><code class="language-javascript">import { getCurrentRoute } from 'metaowl'
+                <h2 class="text-xl font-semibold text-[var(--doc-heading-color)] mb-3">How it works</h2>
+                <p class="text-[var(--doc-text-color)] mb-4">The slug is read via <code class="bg-[var(--doc-inline-code-bg)] px-1.5 py-0.5 rounded text-sm">getCurrentRoute()</code> in <code class="bg-[var(--doc-inline-code-bg)] px-1.5 py-0.5 rounded text-sm">setup()</code>:</p>
+                <pre class="p-4 rounded-lg overflow-x-auto text-sm mb-6 bg-[var(--doc-inline-code-bg)]"><code class="language-javascript">import { getCurrentRoute } from 'metaowl'
 
 export default class Post extends Component {
   setup() {
@@ -27,11 +29,11 @@ export default class Post extends Component {
   }
 }</code></pre>
 
-                <h2 style="font-size: 1.25rem; font-weight: 600; color: var(--doc-heading-color); margin-bottom: 12px;">Try other slugs</h2>
-                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-                    <a href="/docs/routing/hello-world" style="padding: 6px 12px; background: var(--doc-inline-code-bg); border-radius: 6px; font-size: 0.875rem; text-decoration: none; color: var(--doc-heading-color);">hello-world</a>
-                    <a href="/docs/routing/dynamic-routing" style="padding: 6px 12px; background: var(--doc-inline-code-bg); border-radius: 6px; font-size: 0.875rem; text-decoration: none; color: var(--doc-heading-color);">dynamic-routing</a>
-                    <a href="/docs/routing/my-custom-slug" style="padding: 6px 12px; background: var(--doc-inline-code-bg); border-radius: 6px; font-size: 0.875rem; text-decoration: none; color: var(--doc-heading-color);">my-custom-slug</a>
+                <h2 class="text-xl font-semibold text-[var(--doc-heading-color)] mb-3">Try other slugs</h2>
+                <div class="flex flex-wrap gap-2">
+                    <Link to="'/docs/routing/hello-metaowl'" class="'px-3 py-1.5 bg-gray-100 dark:bg-gray-700 rounded text-sm no-underline text-gray-900 dark:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-600'">hello-metaowl</Link>
+                    <Link to="'/docs/routing/dynamic-routing'" class="'px-3 py-1.5 bg-gray-100 dark:bg-gray-700 rounded text-sm no-underline text-gray-900 dark:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-600'">dynamic-routing</Link>
+                    <Link to="'/docs/routing/my-custom-slug'" class="'px-3 py-1.5 bg-gray-100 dark:bg-gray-700 rounded text-sm no-underline text-gray-900 dark:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-600'">my-custom-slug</Link>
                 </div>
             </article>
         </div>

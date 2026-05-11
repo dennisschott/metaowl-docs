@@ -19,22 +19,80 @@ Fetch.configure({
 
         <h2 id="basic-usage" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">Basic Usage</h2>
         <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">// GET request
-const users = await Fetch.get('/users')
+const users = await Fetch.url('/users', 'GET')
 
 // POST request
-const newUser = await Fetch.post('/users', { name: 'John' })
+const newUser = await Fetch.url('/users', 'POST', { name: 'John' })
 
 // PUT request
-await Fetch.put('/users/1', { name: 'Jane' })
+await Fetch.url('/users/1', 'PUT', { name: 'Jane' })
 
 // DELETE request
-await Fetch.delete('/users/1')</code></pre>
+await Fetch.url('/users/1', 'DELETE')</code></pre>
+
+        <h2 id="real-example" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">Real Example</h2>
+        <p class="mb-4 text-[var(--doc-text-color)]">Using JSONPlaceholder as a public API:</p>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { Component, useState } from '@odoo/owl'
+import { Meta, Fetch as FetchAPI } from 'metaowl'
+
+export default class Fetch extends Component {
+  static template = 'Fetch'
+  static components = {}
+
+  setup() {
+    Meta.title('Fetch API - MetaOWL')
+    Meta.description(
+      'Learn how to use the Fetch API for HTTP requests in MetaOWL.',
+    )
+    this.state = useState({
+      users: [],
+      loading: true,
+      error: null,
+    })
+    this.fetchUsers()
+  }
+
+  async fetchUsers() {
+    try {
+      this.state.users = await FetchAPI.url('https://jsonplaceholder.typicode.com/users')
+    } catch (e) {
+      this.state.error = e?.message || 'Failed to load'
+    } finally {
+      this.state.loading = false
+    }
+  }
+}</code></pre>
+
+        <h2 id="demo" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">Real Example Result</h2>
+        <p class="mb-4 text-[var(--doc-text-color)]">Live data fetched from JSONPlaceholder:</p>
+        <div class="mb-6 p-4 bg-[var(--doc-code-bg)] rounded-lg">
+          <t t-if="state.loading">Loading...</t>
+          <t t-elif="state.error" class="text-red-500"><t t-esc="state.error"/></t>
+          <t t-else="">
+            <div class="grid gap-4 grid-cols-1 md:grid-cols-2">
+              <t t-foreach="state.users" t-as="user" t-key="user.id">
+                <div class="p-4 border rounded-lg">
+                  <p class="font-semibold"><t t-esc="user.name"/></p>
+                  <p class="text-sm text-gray-500"><t t-esc="user.email"/></p>
+                </div>
+              </t>
+            </div>
+          </t>
+        </div>
 
         <h2 id="caching" class="text-xl font-semibold mt-8 mb-4 text-[var(--doc-heading-color)]">Caching</h2>
-        <p class="mb-4 text-[var(--doc-text-color)]">Enable caching for GET requests:</p>
-        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">const users = await Fetch.get('/users', {
-  cache: { enabled: true, ttl: 60000 }
-})</code></pre>
+        <p class="mb-4 text-[var(--doc-text-color)]">Enable caching for GET requests using the Cache helper:</p>
+        <pre class="language-javascript p-4 rounded-lg overflow-x-auto text-sm mb-6"><code class="language-javascript">import { Fetch, Cache } from 'metaowl'
+
+async function getUsers() {
+  const cacheKey = 'users'
+  const cached = await Cache.get(cacheKey)
+  if (cached) return cached
+
+  const users = await Fetch.url('/users', 'GET')
+  await Cache.set(cacheKey, users)
+  return users
+}</code></pre>
       </article>
     </div>
   </t>
